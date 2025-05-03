@@ -23,9 +23,10 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import androidx.navigation.NavController
 
 @Composable
-fun LocationScreen() {
+fun LocationScreen(navController: NavController? = null) {
     val viewModel: LocationViewModel = viewModel()
     val context = LocalContext.current
     val locationUtils = LocationUtils(context)
@@ -94,7 +95,7 @@ fun LocationScreen() {
             val userRole = user.role ?: ""
             Toast.makeText(context, "Your role is: $userRole", Toast.LENGTH_SHORT).show()
             if (userRole !in listOf("student", "security", "admin")) {
-                Toast.makeText(context, "Your role ($userRole) can’t send SOS alerts!", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "Your role ($userRole) can't send SOS alerts!", Toast.LENGTH_LONG).show()
                 return
             }
 
@@ -155,6 +156,17 @@ fun LocationScreen() {
             style = MaterialTheme.typography.bodyLarge
         )
         Spacer(modifier = Modifier.height(16.dp))
+        
+        // Add Map View button
+        Button(
+            onClick = { navController?.navigate("map") },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 16.dp)
+        ) {
+            Text("View Map")
+        }
+
         Button(
             onClick = {
                 if (!locationUtils.isLocationEnabled()) {
@@ -176,12 +188,12 @@ fun LocationScreen() {
                         } else {
                             Toast.makeText(
                                 context,
-                                "Couldn’t find your location. Try again!",
+                                "Couldn't find your location. Try again!",
                                 Toast.LENGTH_LONG
                             ).show()
                         }
                     }
-                }else {
+                } else {
                     requestPermissionLauncher.launch(
                         arrayOf(
                             Manifest.permission.ACCESS_FINE_LOCATION,

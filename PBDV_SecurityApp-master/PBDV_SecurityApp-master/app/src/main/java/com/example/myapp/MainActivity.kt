@@ -19,6 +19,7 @@ import com.example.myapp.screens.SecurityDashboardScreen
 import com.example.myapp.screens.SecurityLoginScreen
 import com.example.myapp.screens.StudentLoginScreen
 import com.example.myapp.screens.StudentPanicScreen
+import com.example.myapp.screens.MapScreen
 import com.example.myapp.ui.theme.MyAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -43,7 +44,10 @@ fun MyApp() {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = "location") {
         composable("location") {
-            LocationScreen()
+            LocationScreen(navController = navController)
+        }
+        composable("map") {
+            MapScreen()
         }
         composable("student") {
             StudentPanicScreen(
@@ -82,6 +86,5 @@ fun MyApp() {
                 }
             )
         }
-
     }
 }
