@@ -172,11 +172,16 @@ fun LocationScreen() {
                             attempts++
                         }
                         if (viewModel.location.value != null) {
-                        saveSosAlert()
-                    } else {
-                        Toast.makeText(context, "Couldn’t find your location. Try again!", Toast.LENGTH_LONG).show()
+                            saveSosAlert()
+                        } else {
+                            Toast.makeText(
+                                context,
+                                "Couldn’t find your location. Try again!",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
                     }
-                } else {
+                }else {
                     requestPermissionLauncher.launch(
                         arrayOf(
                             Manifest.permission.ACCESS_FINE_LOCATION,

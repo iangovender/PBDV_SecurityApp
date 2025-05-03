@@ -13,12 +13,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.myapp.screens.LocationScreen
-import com.example.campussecuritysystem.ui.screens.CommunicationScreen
-import com.example.campussecuritysystem.ui.screens.ResolvedAlertsScreen
-import com.example.campussecuritysystem.ui.screens.SecurityDashboardScreen
-import com.example.campussecuritysystem.ui.screens.SecurityLoginScreen
-import com.example.campussecuritysystem.ui.screens.StudentLoginScreen
-import com.example.campussecuritysystem.ui.screens.StudentPanicScreen
+import com.example.myapp.screens.CommunicationScreen
+import com.example.myapp.screens.ResolvedAlertsScreen
+import com.example.myapp.screens.SecurityDashboardScreen
+import com.example.myapp.screens.SecurityLoginScreen
+import com.example.myapp.screens.StudentLoginScreen
+import com.example.myapp.screens.StudentPanicScreen
 import com.example.myapp.ui.theme.MyAppTheme
 
 class MainActivity : ComponentActivity() {

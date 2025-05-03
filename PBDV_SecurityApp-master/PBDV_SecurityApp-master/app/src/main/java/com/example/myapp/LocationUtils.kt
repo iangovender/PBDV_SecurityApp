@@ -6,6 +6,7 @@ import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
+import android.location.LocationManager
 import android.location.LocationRequest
 import android.os.Looper
 import androidx.core.content.ContextCompat

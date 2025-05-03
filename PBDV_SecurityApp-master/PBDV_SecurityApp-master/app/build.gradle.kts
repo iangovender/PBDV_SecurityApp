@@ -67,6 +67,11 @@ dependencies {
     implementation(libs.firebase.firestore)
     implementation(libs.firebase.messaging)
 
+    // Google Map Dependencies
+    implementation("com.google.android.gms:play-services-location:21.0.1")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
+    implementation("com.google.android.gms:play-services-maps:18.2.0")
+    implementation ("com.google.maps.android:maps-compose:4.3.3")
     // Kotlin Coroutines dependency
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
 }
