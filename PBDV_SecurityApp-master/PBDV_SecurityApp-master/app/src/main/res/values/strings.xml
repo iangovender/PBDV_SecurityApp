@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">MyApp</string>
+    <string name="signup">Sign Up</string>
+    <string name="student_dashboard">Student Dashboard</string>
+    <string name="security_dashboard">Security Dashboard</string>
+    <string name="admin_dashboard">Admin Dashboard</string>
+    <string name="google_maps_key">AIzaSyDrrc9tJvtfkURBLcaKtzhvZh23LfPNvkg</string>
+</resources>
