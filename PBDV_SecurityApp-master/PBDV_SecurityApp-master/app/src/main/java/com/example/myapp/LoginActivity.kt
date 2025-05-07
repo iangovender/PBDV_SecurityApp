@@ -13,8 +13,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.collectAsState
 import com.example.myapp.ui.theme.MyAppTheme
 import kotlinx.coroutines.flow.StateFlow
 
@@ -32,7 +30,13 @@ class LoginActivity : ComponentActivity() {
                         onSignInSuccess = { user ->
                             when (user.role) {
                                 "student" -> startActivity(Intent(this, StudentDashboardActivity::class.java))
-                                "security" -> startActivity(Intent(this, SecurityDashboardActivity::class.java))
+                                "security" -> {
+                                    // Navigate to MainActivity with the "security" route
+                                    val intent = Intent(this, MainActivity::class.java).apply {
+                                        putExtra("destination", "security")
+                                    }
+                                    startActivity(intent)
+                                }
                                 "admin" -> startActivity(Intent(this, AdminDashboardActivity::class.java))
                             }
                             finish()

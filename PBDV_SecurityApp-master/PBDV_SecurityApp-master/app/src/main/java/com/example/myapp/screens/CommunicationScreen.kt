@@ -164,6 +164,7 @@ fun CommunicationScreen(alertId: String, sender: String, onBack: () -> Unit) {
                 val cameraPositionState = rememberCameraPositionState {
                     position = CameraPosition.fromLatLngZoom(alertLocation, 15f)
                 }
+
                 if (mapLoadError != null) {
                     Text(
                         text = "Failed to load map: $mapLoadError",

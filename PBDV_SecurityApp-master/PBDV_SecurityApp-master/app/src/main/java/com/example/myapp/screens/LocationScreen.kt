@@ -9,6 +9,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -23,10 +24,14 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import androidx.navigation.NavController
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 @Composable
-fun LocationScreen(navController: NavController? = null) {
+fun LocationScreen(
+    onAlertSent: (String) -> Unit = {} // Callback to navigate to CommunicationScreen
+) {
     val viewModel: LocationViewModel = viewModel()
     val context = LocalContext.current
     val locationUtils = LocationUtils(context)
@@ -34,13 +39,18 @@ fun LocationScreen(navController: NavController? = null) {
     val currentUser = FirebaseAuth.getInstance().currentUser
     val db = FirebaseFirestore.getInstance()
 
+    // State for countdown and dialog
+    var showDialog by remember { mutableStateOf(false) }
+    var isCountingDown by remember { mutableStateOf(false) }
+    var countdown by remember { mutableStateOf(10) }
+
     val requestPermissionLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.RequestMultiplePermissions(),
         onResult = { permissions ->
             if (permissions[Manifest.permission.ACCESS_COARSE_LOCATION] == true &&
                 permissions[Manifest.permission.ACCESS_FINE_LOCATION] == true
             ) {
-                locationUtils.requestLocationUpdates(viewModel = viewModel)
+                locationUtils.requestLocationUpdates(viewModel)
             } else {
                 val rationalRequired = ActivityCompat.shouldShowRequestPermissionRationale(
                     context as MainActivity,
@@ -66,81 +76,121 @@ fun LocationScreen(navController: NavController? = null) {
         }
     )
 
-    // Save SOS alert and send notification
-    suspend fun saveSosAlert() {
-        if (location == null || currentUser == null) {
-            Toast.makeText(context, "Location: $location, User: $currentUser", Toast.LENGTH_SHORT).show()
-            return
-        }
-
-        try {
-            // Fetch user data from Firestore
-            val userSnapshot = db.collection("users")
-                .document(currentUser.uid)
-                .get()
-                .await()
-
-            if (!userSnapshot.exists()) {
-                Toast.makeText(context, "User data not found in Firestore!", Toast.LENGTH_LONG).show()
-                return
+    // Handle countdown logic
+    LaunchedEffect(isCountingDown) {
+        if (isCountingDown) {
+            while (countdown > 0) {
+                delay(1000L)
+                countdown -= 1
             }
+            if (countdown == 0) {
+                // Proceed to save SOS alert when countdown finishes
+                if (location == null || currentUser == null) {
+                    Toast.makeText(context, "Location: $location, User: $currentUser", Toast.LENGTH_LONG).show()
+                    isCountingDown = false
+                    countdown = 10
+                    return@LaunchedEffect
+                }
 
-            val user = userSnapshot.toObject(User::class.java)
-            if (user == null) {
-                Toast.makeText(context, "Unable to fetch user data", Toast.LENGTH_SHORT).show()
-                return
+                try {
+                    // Fetch user data from Firestore
+                    val userSnapshot = db.collection("users")
+                        .document(currentUser.uid)
+                        .get()
+                        .await()
+
+                    if (!userSnapshot.exists()) {
+                        Toast.makeText(context, "User data not found in Firestore!", Toast.LENGTH_LONG).show()
+                        isCountingDown = false
+                        countdown = 10
+                        return@LaunchedEffect
+                    }
+
+                    val user = userSnapshot.toObject(User::class.java)
+                    if (user == null) {
+                        Toast.makeText(context, "Unable to fetch user data", Toast.LENGTH_SHORT).show()
+                        isCountingDown = false
+                        countdown = 10
+                        return@LaunchedEffect
+                    }
+
+                    // Check the user's role
+                    val userRole = user.role ?: ""
+                    Toast.makeText(context, "Your role is: $userRole", Toast.LENGTH_SHORT).show()
+                    if (userRole !in listOf("student", "security", "admin")) {
+                        Toast.makeText(context, "Your role ($userRole) can’t send SOS alerts!", Toast.LENGTH_LONG).show()
+                        isCountingDown = false
+                        countdown = 10
+                        return@LaunchedEffect
+                    }
+
+                    // Use campusId from user data
+                    val campusId = user.campusId.takeIf { it.isNotEmpty() } ?: run {
+                        Toast.makeText(context, "Campus ID not set for user", Toast.LENGTH_SHORT).show()
+                        isCountingDown = false
+                        countdown = 10
+                        return@LaunchedEffect
+                    }
+
+                    // Create SOS alert using the SosAlert model
+                    val sosAlert = SosAlert(
+                        studentId = currentUser.uid,
+                        campusId = campusId,
+                        location = LocationData(latitude = location.latitude, longitude = location.longitude),
+                        message = "Emergency alert from student",
+                        status = "pending",
+                        assignedTo = "",
+                        createdAt = Timestamp.now(),
+                        updatedAt = Timestamp.now()
+                    )
+
+                    // Save to Firestore and get the document reference
+                    val documentReference = db.collection("sos_alerts").add(sosAlert).await()
+
+                    // Add initial message to messages subcollection
+                    val autoMessage = hashMapOf(
+                        "sender" to "student",
+                        "text" to "HELP EMERGENCY",
+                        "timestamp" to SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date()),
+                        "type" to "text",
+                        "delivered" to false
+                    )
+                    db.collection("sos_alerts")
+                        .document(documentReference.id)
+                        .collection("messages")
+                        .add(autoMessage)
+                        .await()
+
+                    // Create notification for security
+                    val notification = Notification(
+                        campusId = campusId,
+                        title = "Emergency Alert",
+                        message = "New SOS alert from student at ${location.latitude}, ${location.longitude}",
+                        type = "sos",
+                        targetRole = "security",
+                        createdAt = Timestamp.now()
+                    )
+
+                    // Save notification
+                    db.collection("notifications").add(notification).await()
+
+                    // Send FCM notification to security
+                    val securityTopic = "security_team"
+                    FirebaseMessaging.getInstance().subscribeToTopic(securityTopic)
+                    Toast.makeText(context, "SOS alert sent successfully", Toast.LENGTH_LONG).show()
+
+                    // Navigate to CommunicationScreen with the alertId
+                    onAlertSent(documentReference.id)
+
+                    // Reset countdown state
+                    isCountingDown = false
+                    countdown = 10
+                } catch (e: Exception) {
+                    Toast.makeText(context, "Error sending SOS alert: ${e.message}", Toast.LENGTH_LONG).show()
+                    isCountingDown = false
+                    countdown = 10
+                }
             }
-
-            // Check the user's role
-            val userRole = user.role ?: ""
-            Toast.makeText(context, "Your role is: $userRole", Toast.LENGTH_SHORT).show()
-            if (userRole !in listOf("student", "security", "admin")) {
-                Toast.makeText(context, "Your role ($userRole) can't send SOS alerts!", Toast.LENGTH_LONG).show()
-                return
-            }
-
-            // Use campusId from user data
-            val campusId = user.campusId.takeIf { it.isNotEmpty() } ?: run {
-                Toast.makeText(context, "Campus ID not set for user", Toast.LENGTH_SHORT).show()
-                return
-            }
-
-            // Create SOS alert
-            val sosAlert = SosAlert(
-                studentId = currentUser.uid,
-                campusId = campusId,
-                location = LocationData(location.latitude, location.longitude),
-                message = "Emergency alert from student",
-                status = "pending",
-                assignedTo = "",
-                createdAt = Timestamp.now(),
-                updatedAt = Timestamp.now()
-            )
-
-            // Save to Firestore
-            db.collection("sosAlerts").add(sosAlert).await()
-
-            // Create notification for security
-            val notification = Notification(
-                campusId = campusId,
-                title = "Emergency Alert",
-                message = "New SOS alert from student at ${location.latitude}, ${location.longitude}",
-                type = "sos",
-                targetRole = "security",
-                createdAt = Timestamp.now()
-            )
-
-            // Save notification
-            db.collection("notifications").add(notification).await()
-
-            // Send FCM notification to security
-            val securityTopic = "security_team"
-            FirebaseMessaging.getInstance().subscribeToTopic(securityTopic)
-            // Note: Actual FCM message sending would typically be handled server-side
-            // This is a simplified version
-            Toast.makeText(context, "SOS alert sent successfully", Toast.LENGTH_LONG).show()
-        } catch (e: Exception) {
-            Toast.makeText(context, "Error sending SOS alert: ${e.message}", Toast.LENGTH_LONG).show()
         }
     }
 
@@ -156,55 +206,91 @@ fun LocationScreen(navController: NavController? = null) {
             style = MaterialTheme.typography.bodyLarge
         )
         Spacer(modifier = Modifier.height(16.dp))
-        
-        // Add Map View button
-        Button(
-            onClick = { navController?.navigate("map") },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 16.dp)
-        ) {
-            Text("View Map")
-        }
+        Text(
+            text = "Current Location: ${location?.latitude ?: "Unknown"}, ${location?.longitude ?: "Unknown"}",
+            style = MaterialTheme.typography.bodyMedium
+        )
+        Spacer(modifier = Modifier.height(16.dp))
 
-        Button(
-            onClick = {
-                if (!locationUtils.isLocationEnabled()) {
-                    Toast.makeText(context, "Please turn on location services!", Toast.LENGTH_LONG)
-                        .show()
-                    return@Button
-                }
-                if (locationUtils.hasLocationPermission(context)) {
-                    locationUtils.requestLocationUpdates(viewModel)
-                    // Launch coroutine to save SOS alert
-                    CoroutineScope(Dispatchers.Main).launch {
-                        var attempts = 0
-                        while (viewModel.location.value == null && attempts < 20) {
-                            delay(500)
-                            attempts++
-                        }
-                        if (viewModel.location.value != null) {
-                            saveSosAlert()
-                        } else {
-                            Toast.makeText(
-                                context,
-                                "Couldn't find your location. Try again!",
-                                Toast.LENGTH_LONG
-                            ).show()
-                        }
+        if (isCountingDown) {
+            Text(
+                text = "Security will be notified in $countdown seconds",
+                style = MaterialTheme.typography.bodyMedium,
+                color = Color.Red,
+                modifier = Modifier.padding(top = 16.dp)
+            )
+            Button(
+                onClick = {
+                    isCountingDown = false
+                    countdown = 10
+                    Toast.makeText(context, "SOS alert canceled", Toast.LENGTH_SHORT).show()
+                },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 16.dp)
+            ) {
+                Text("Cancel SOS Alert")
+            }
+        } else {
+            Button(
+                onClick = {
+                    if (!locationUtils.isLocationEnabled()) {
+                        Toast.makeText(context, "Please turn on location services!", Toast.LENGTH_LONG).show()
+                        return@Button
                     }
-                } else {
-                    requestPermissionLauncher.launch(
-                        arrayOf(
-                            Manifest.permission.ACCESS_FINE_LOCATION,
-                            Manifest.permission.ACCESS_COARSE_LOCATION
+                    if (locationUtils.hasLocationPermission(context)) {
+                        locationUtils.requestLocationUpdates(viewModel)
+                        CoroutineScope(Dispatchers.Main).launch {
+                            var attempts = 0
+                            while (viewModel.location.value == null && attempts < 20) {
+                                delay(500)
+                                attempts++
+                            }
+                            if (viewModel.location.value != null) {
+                                showDialog = true // Show confirmation dialog
+                            } else {
+                                Toast.makeText(context, "Couldn’t find your location. Try again!", Toast.LENGTH_LONG).show()
+                            }
+                        }
+                    } else {
+                        requestPermissionLauncher.launch(
+                            arrayOf(
+                                Manifest.permission.ACCESS_FINE_LOCATION,
+                                Manifest.permission.ACCESS_COARSE_LOCATION
+                            )
                         )
-                    )
+                    }
+                },
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text("Send Emergency Alert")
+            }
+        }
+    }
+
+    // Confirmation dialog before starting countdown
+    if (showDialog) {
+        AlertDialog(
+            onDismissRequest = { showDialog = false },
+            title = { Text("Send SOS Alert") },
+            text = { Text("Are you sure you want to send an SOS alert?") },
+            confirmButton = {
+                Button(
+                    onClick = {
+                        showDialog = false
+                        isCountingDown = true
+                    }
+                ) {
+                    Text("Yes")
                 }
             },
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Text("Send Emergency Alert")
-        }
+            dismissButton = {
+                Button(
+                    onClick = { showDialog = false }
+                ) {
+                    Text("No")
+                }
+            }
+        )
     }
 }
