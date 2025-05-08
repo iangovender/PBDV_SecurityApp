@@ -16,6 +16,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.myapp.screens.LocationScreen
 import com.example.myapp.screens.CommunicationScreen
+import com.example.myapp.screens.ReportIncidentScreen
 import com.example.myapp.screens.ResolvedAlertsScreen
 import com.example.myapp.screens.SecurityDashboardScreen
 import com.example.myapp.screens.SecurityLoginScreen
@@ -46,13 +47,54 @@ class MainActivity : ComponentActivity() {
 fun MyApp(startDestination: String = "location") {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = startDestination) {
-        composable("location") {
-            LocationScreen(
-                onAlertSent = { alertId ->
-                    navController.navigate("communication/$alertId/student")
+        //  Authentication
+        composable("login") {
+            LoginScreen(
+                onSignInSuccess = { user ->
+                    when (user.role) {
+                        "student" -> {
+                            val intent = Intent(navController.context, StudentDashboardActivity::class.java)
+                            navController.context.startActivity(intent)
+                        }
+                        "security" -> {
+                            val intent = Intent(navController.context, MainActivity::class.java).apply {
+                                putExtra("destination", "security")
+                            }
+                            navController.context.startActivity(intent)
+                        }
+                        "admin" -> {
+                            val intent = Intent(navController.context, AdminDashboardActivity::class.java)
+                            navController.context.startActivity(intent)
+                        }
+                    }
+                },
+                onSignUpClick = {
+                    navController.navigate("signup")
+                },
+                onNavigateToForgotPassword = {
+                    val intent = Intent(navController.context, ForgotPasswordActivity::class.java)
+                    navController.context.startActivity(intent)
                 }
             )
         }
+
+        composable("signup") {
+            // Placeholder for SignupScreen
+            // This will navigate back to login upon successful registration
+            SignupScreen(
+                onSignUpSuccess = {
+                    navController.navigate("login") {
+                        popUpTo("signup") { inclusive = true }
+                    }
+                },
+                onNavigateToLogin = {
+                    navController.navigate("login") {
+                        popUpTo("signup") { inclusive = true }
+                    }
+                }
+            )
+        }
+
         // Note: The "map" route is commented out as the first segment's LocationScreen.kt
         // does not navigate to a map screen. Uncomment if needed for other parts of the app.
         /*
@@ -60,6 +102,31 @@ fun MyApp(startDestination: String = "location") {
             MapScreen()
         }
         */
+
+        // For students
+        composable("student_dashboard") {
+            SimplifiedStudentDashboardScreen(
+                onGetLocation = { navController.navigate("location") },
+                onReportIncident = { navController.navigate("reportIncident") }
+            )
+        }
+
+        composable("location") {
+            LocationScreen(
+                onAlertSent = { alertId ->
+                    navController.navigate("communication/$alertId/student")
+                }
+            )
+        }
+
+        composable("reportIncident") {
+            ReportIncidentScreen(
+                onSubmit = {
+                    navController.popBackStack() // Navigate back to the dashboard after submitting the report
+                }
+            )
+        }
+
         composable("student") {
             StudentPanicScreen(
                 onAlertSent = { alertId ->
@@ -67,6 +134,21 @@ fun MyApp(startDestination: String = "location") {
                 }
             )
         }
+
+        composable("communication/{alertId}/{sender}") { backStackEntry ->
+            val alertId = backStackEntry.arguments?.getString("alertId") ?: ""
+            val sender = backStackEntry.arguments?.getString("sender") ?: "student"
+            CommunicationScreen(
+                alertId = alertId,
+                sender = sender,
+                onBack = {
+                    val destination = if (sender == "student") "student" else "security"
+                    navController.navigate(destination)
+                }
+            )
+        }
+
+        //  For security
         composable("security_login") {
             SecurityLoginScreen(
                 onLoginSuccess = { navController.navigate("security") }
@@ -89,18 +171,6 @@ fun MyApp(startDestination: String = "location") {
         composable("resolved") {
             ResolvedAlertsScreen(
                 onBack = { navController.navigate("security") }
-            )
-        }
-        composable("communication/{alertId}/{sender}") { backStackEntry ->
-            val alertId = backStackEntry.arguments?.getString("alertId") ?: ""
-            val sender = backStackEntry.arguments?.getString("sender") ?: "student"
-            CommunicationScreen(
-                alertId = alertId,
-                sender = sender,
-                onBack = {
-                    val destination = if (sender == "student") "student" else "security"
-                    navController.navigate(destination)
-                }
             )
         }
     }

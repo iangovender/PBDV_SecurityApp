@@ -49,6 +49,11 @@
             android:label="@string/signup"
             android:theme="@style/Theme.MyApp" />
         <activity
+            android:name=".ForgotPasswordActivity"
+            android:exported="false"
+            android:label="Forgot Password"
+            android:theme="@style/Theme.MyApp"/>
+        <activity
             android:name=".StudentDashboardActivity"
             android:exported="false"
             android:label="@string/student_dashboard"

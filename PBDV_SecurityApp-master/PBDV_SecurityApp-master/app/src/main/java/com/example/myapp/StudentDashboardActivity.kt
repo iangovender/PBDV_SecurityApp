@@ -20,7 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-
+import kotlin.jvm.java
 
 
 class StudentDashboardActivity : ComponentActivity() {
@@ -40,6 +40,13 @@ class StudentDashboardActivity : ComponentActivity() {
                             startActivity(Intent(this, MainActivity::class.java))
                             // Optional: finish() // You might want to finish this activity
                             // if MainActivity is the primary location screen.
+
+                        },
+                        onReportIncident = {
+                            val intent = Intent(this, MainActivity::class.java).apply {
+                                putExtra("destination", "reportIncident")
+                            }
+                            startActivity(intent)
                         }
                     )
                 }
@@ -55,7 +62,10 @@ class StudentDashboardActivity : ComponentActivity() {
  * @param onGetLocation Lambda function to execute when the "Get Location" button is clicked.
  */
 @Composable
-fun SimplifiedStudentDashboardScreen(onGetLocation: () -> Unit) {
+fun SimplifiedStudentDashboardScreen(
+    onGetLocation: () -> Unit,
+    onReportIncident: () -> Unit
+) {
 
     Column(
         modifier = Modifier
@@ -80,6 +90,15 @@ fun SimplifiedStudentDashboardScreen(onGetLocation: () -> Unit) {
         ) {
 
             Text("Get Location")
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Button(
+            onClick = onReportIncident,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text("Report Incident")
         }
     }
 }

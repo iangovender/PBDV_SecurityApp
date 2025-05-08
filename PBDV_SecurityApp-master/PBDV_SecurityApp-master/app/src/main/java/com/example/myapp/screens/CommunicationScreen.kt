@@ -101,7 +101,7 @@ fun CommunicationScreen(alertId: String, sender: String, onBack: () -> Unit) {
                 if (error != null) {
                     return@addSnapshotListener
                 }
-                isOtherTyping = snapshot?.getBoolean("isTyping") ?: false
+                isOtherTyping = snapshot?.getBoolean("isTyping") == true
             }
     }
 
@@ -228,7 +228,7 @@ fun CommunicationScreen(alertId: String, sender: String, onBack: () -> Unit) {
                     val text = message["text"] as? String ?: ""
                     val timestamp = message["timestamp"] as? String ?: ""
                     val messageType = message["type"] as? String ?: "text"
-                    val isDelivered = message["delivered"] as? Boolean ?: false
+                    val isDelivered = message["delivered"] as? Boolean == true
                     val shortTimestamp = try {
                         val inputFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
                         val outputFormat = SimpleDateFormat("HH:mm", Locale.getDefault())

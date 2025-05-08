@@ -12,6 +12,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 
 class AuthViewModel : ViewModel() {
+    // Firebase instances
     private val auth = FirebaseAuth.getInstance()
     private val firestore = FirebaseFirestore.getInstance()
 
@@ -23,6 +24,11 @@ class AuthViewModel : ViewModel() {
     val user: StateFlow<User?> = _user.asStateFlow()
     val error: StateFlow<String?> = _error.asStateFlow()
 
+    // --- Authentication Section ---
+
+    /**
+     * Sign up a new user with email, password, and additional user details.
+     */
     fun signUp(
         email: String,
         password: String,
@@ -58,6 +64,9 @@ class AuthViewModel : ViewModel() {
         }
     }
 
+    /**
+     * Sign in an existing user with email and password.
+     */
     fun signIn(email: String, password: String) {
         viewModelScope.launch {
             try {
@@ -77,13 +86,52 @@ class AuthViewModel : ViewModel() {
         }
     }
 
+    /**
+     * Sign out the current user.
+     */
     fun signOut() {
         auth.signOut()
         _user.value = null
         _error.value = null
     }
 
+    /**
+     * Send a verification email to the current user.
+     */
+    fun sendVerificationEmail(onComplete: (Boolean) -> Unit = { _ -> }) {
+        viewModelScope.launch {
+            try {
+                val firebaseUser = auth.currentUser ?: throw Exception("No user logged in")
+                firebaseUser.sendEmailVerification().await()
+                onComplete(true)
+            } catch (e: Exception) {
+//                handleError(e)
+                onComplete(false)
+            }
+        }
+    }
 
+    /**
+     * Send a password reset email to the given email address.
+     */
+    fun sendPasswordResetEmail(email: String, onComplete: (Boolean, String?) -> Unit) {
+        viewModelScope.launch {
+            try {
+                auth.sendPasswordResetEmail(email).await()
+                onComplete(true, null)
+            } catch (e: Exception) {
+//                handleError(e)
+                onComplete(false, e.message)
+            }
+        }
+    }
+
+
+    // --- Incident Reporting Section ---
+
+    /**
+     * Report a test incident for the given user.
+     */
     fun reportTestIncident(user: User?, onSuccess: () -> Unit, onError: (String) -> Unit) {
         viewModelScope.launch {
             try {

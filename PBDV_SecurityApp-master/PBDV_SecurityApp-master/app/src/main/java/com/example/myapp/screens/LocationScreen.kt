@@ -1,16 +1,24 @@
 package com.example.myapp.screens
 
 import android.Manifest
+import android.content.Context
+import android.location.Location
+import android.net.Uri
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.filled.AddPhotoAlternate
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.myapp.*
@@ -21,6 +29,10 @@ import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.tasks.await
 import androidx.compose.ui.unit.dp
+import com.google.android.gms.location.LocationServices
+import com.google.firebase.Firebase
+import com.google.firebase.firestore.firestore
+import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -294,3 +306,200 @@ fun LocationScreen(
         )
     }
 }
+
+@Composable
+fun ReportIncidentScreen(
+    onSubmit: () -> Unit
+) {
+    val context = LocalContext.current
+    val db = Firebase.firestore
+    val storage = FirebaseStorage.getInstance()
+
+    var incidentType by remember { mutableStateOf("") }
+    var description by remember { mutableStateOf("") }
+    var location by remember { mutableStateOf<Location?>(null) }
+    var imageUrl by remember { mutableStateOf<String?>(null) }
+    var isSubmitting by remember { mutableStateOf(false) }
+    var selectedImageUri by remember { mutableStateOf<Uri?>(null) }
+
+    val locationPermissionLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.RequestPermission(),
+        onResult = { isGranted ->
+            if (isGranted) {
+                fetchLocation(context) { loc ->
+                    location = loc
+                    Toast.makeText(context, "Location captured", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                Toast.makeText(context, "Location permission denied", Toast.LENGTH_SHORT).show()
+            }
+        }
+    )
+
+    val imagePickerLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.GetContent(),
+        onResult = { uri ->
+            if (uri != null) {
+                selectedImageUri = uri
+                Toast.makeText(context, "Image selected successfully", Toast.LENGTH_SHORT).show()
+            }
+        }
+    )
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text(
+            text = "Report an Incident",
+            style = MaterialTheme.typography.headlineSmall,
+            color = Color.Black
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // Incident Type Dropdown
+        OutlinedTextField(
+            value = incidentType,
+            onValueChange = { incidentType = it },
+            label = { Text("Incident Type") },
+            modifier = Modifier.fillMaxWidth(),
+            keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Next)
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // Description Text Area
+        OutlinedTextField(
+            value = description,
+            onValueChange = { description = it },
+            label = { Text("Description") },
+            modifier = Modifier.fillMaxWidth(),
+            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Text),
+            maxLines = 5
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        if (location == null) {
+            Button(onClick = {
+                locationPermissionLauncher.launch(android.Manifest.permission.ACCESS_FINE_LOCATION)
+            }) {
+                Text("Fetch Location")
+            }
+        } else {
+            Text("Location: Lat ${location!!.latitude}, Lon ${location!!.longitude}")
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // Image Upload Button
+        Button(onClick = { imagePickerLauncher.launch("image/*") }) {
+            Icon(Icons.Filled.AddPhotoAlternate, contentDescription = null)
+            Spacer(modifier = Modifier.width(8.dp))
+            Text("Select Image")
+        }
+
+        selectedImageUri?.let {
+            Text(
+                text = "Selected Image: ${it.lastPathSegment}",
+                style = MaterialTheme.typography.bodySmall,
+                color = Color.Gray,
+                modifier = Modifier.padding(top = 8.dp)
+            )
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // Submit Button
+        Button(
+            onClick = {
+                if (incidentType.isBlank() || description.isBlank()) {
+                    Toast.makeText(context, "Please fill all required fields", Toast.LENGTH_SHORT).show()
+                    return@Button
+                }
+
+                if (selectedImageUri == null) {
+                    Toast.makeText(context, "Please select an image", Toast.LENGTH_SHORT).show()
+                    return@Button
+                }
+
+                isSubmitting = true
+
+                // Upload image to Firebase Storage
+                uploadImageToFirebase(storage, selectedImageUri!!) { uploadedUrl ->
+                    imageUrl = uploadedUrl
+
+                    // Create incident data
+                    val incidentData = hashMapOf(
+                        "incidentType" to incidentType,
+                        "description" to description,
+                        "location" to hashMapOf(
+                            "latitude" to (location?.latitude ?: 0.0),
+                            "longitude" to (location?.longitude ?: 0.0)
+                        ),
+                        "imageUrl" to imageUrl,
+                        "createdAt" to SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date())
+                    )
+
+                    // Save to Firestore
+                    db.collection("incidents")
+                        .add(incidentData)
+                        .addOnSuccessListener {
+                            Toast.makeText(context, "Incident reported successfully", Toast.LENGTH_SHORT).show()
+                            isSubmitting = false
+                            onSubmit()
+                        }
+                        .addOnFailureListener { e ->
+                            Toast.makeText(context, "Failed to report incident: ${e.message}", Toast.LENGTH_LONG).show()
+                            isSubmitting = false
+                        }
+                }
+            },
+            modifier = Modifier.fillMaxWidth(),
+            enabled = !isSubmitting
+        ) {
+            Text(if (isSubmitting) "Submitting..." else "Submit Incident")
+        }
+    }
+}
+
+private fun fetchLocation(context: Context, onLocationFetched: (Location?) -> Unit) {
+    val fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
+    fusedLocationClient.lastLocation
+        .addOnSuccessListener { location ->
+            onLocationFetched(location)
+        }
+        .addOnFailureListener {
+            onLocationFetched(null)
+        }
+}
+
+private fun uploadImageToFirebase(
+    storage: FirebaseStorage,
+    imageUri: Uri,
+    onUploadComplete: (String) -> Unit
+) {
+    val storageRef = storage.reference.child("incident_images/${System.currentTimeMillis()}.jpg")
+    storageRef.putFile(imageUri)
+        .addOnSuccessListener {
+            storageRef.downloadUrl.addOnSuccessListener { uri ->
+                onUploadComplete(uri.toString())
+            }
+        }
+        .addOnFailureListener { e ->
+            e.printStackTrace()
+        }
+}
+
+//@Composable
+//fun IncidentScreen(navController: NavHostController) {
+//    IncidentReportForm(
+//        onIncidentSubmitted = {
+//            // Navigate back to the previous screen or show a success message
+//            navController.popBackStack()
+//        }
+//    )
+//}
