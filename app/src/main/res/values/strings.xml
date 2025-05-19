@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Campus Security</string>
+    <string name="signup">Sign Up</string>
+    <string name="student_dashboard">Student Dashboard</string>
+    <string name="security_dashboard">Security Dashboard</string>
+    <string name="admin_dashboard">Admin Dashboard</string>
+    <string name="google_maps_key">AIzaSyDrrc9tJvtfkURBLcaKtzhvZh23LfPNvkg</string>
+
+    <string name="emergency_numbers">Emergency Numbers</string>
+    <string name="call_campus_security">Campus Security</string>
+    <string name="call_police">Police</string>
+    <string name="call_ambulance">Ambulance</string>
+    <string name="safety_tips">Safety Tips</string>
+    <string name="tip1">Stay in well-lit areas at night.</string>
+    <string name="tip2">Report suspicious activity immediately.</string>
+    <string name="tip3">Keep your phone charged and with you.</string>
+    <string name="recent_incidents">Recent Incidents</string>
+    <string name="recent_sos_alerts">Recent SOS Alerts</string>
+    <string name="no_recent_incidents">No recent incidents.</string>
+    <string name="no_recent_sos">No recent SOS alerts.</string>
+    <string name="error_loading_incidents">Failed to load incidents: %1$s</string>
+    <string name="error_loading_sos">Failed to load SOS alerts: %1$s</string>
+    <string name="error_permission_denied">You don\'t have permission to view SOS alerts</string>
+    <string name="error_network_unavailable">Network unavailable. Please check your connection.</string>
+</resources>

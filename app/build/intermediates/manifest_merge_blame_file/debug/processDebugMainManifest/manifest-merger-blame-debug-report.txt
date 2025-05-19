@@ -1,0 +1,662 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.myapp"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="24"
+9        android:targetSdkVersion="35" />
+10
+11    <uses-feature
+11-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:5:5-7:36
+12        android:name="android.hardware.telephony"
+12-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:6:9-50
+13        android:required="false" />
+13-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:7:9-33
+14
+15    <uses-permission android:name="android.permission.INTERNET" />
+15-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:9:5-67
+15-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:9:22-64
+16    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+16-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:10:5-81
+16-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:10:22-78
+17    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+17-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:11:5-79
+17-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:11:22-76
+18    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+18-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:12:5-77
+18-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:12:22-74
+19    <uses-permission android:name="android.permission.CALL_PHONE" />
+19-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:13:5-69
+19-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:13:22-66
+20    <!-- Include required permissions for Google Maps API to run. -->
+21    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+21-->[com.google.android.gms:play-services-maps:19.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/f32d399ace3a6a643531c2026fefd5ec/transformed/play-services-maps-19.0.0/AndroidManifest.xml:23:5-79
+21-->[com.google.android.gms:play-services-maps:19.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/f32d399ace3a6a643531c2026fefd5ec/transformed/play-services-maps-19.0.0/AndroidManifest.xml:23:22-76
+22
+23    <uses-feature
+23-->[com.google.android.gms:play-services-maps:19.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/f32d399ace3a6a643531c2026fefd5ec/transformed/play-services-maps-19.0.0/AndroidManifest.xml:26:5-28:35
+24        android:glEsVersion="0x00020000"
+24-->[com.google.android.gms:play-services-maps:19.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/f32d399ace3a6a643531c2026fefd5ec/transformed/play-services-maps-19.0.0/AndroidManifest.xml:27:9-41
+25        android:required="true" />
+25-->[com.google.android.gms:play-services-maps:19.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/f32d399ace3a6a643531c2026fefd5ec/transformed/play-services-maps-19.0.0/AndroidManifest.xml:28:9-32
+26
+27    <queries>
+27-->[com.google.android.gms:play-services-maps:19.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/f32d399ace3a6a643531c2026fefd5ec/transformed/play-services-maps-19.0.0/AndroidManifest.xml:30:5-34:15
+28
+29        <!-- Needs to be explicitly declared on Android R+ -->
+30        <package android:name="com.google.android.apps.maps" />
+30-->[com.google.android.gms:play-services-maps:19.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/f32d399ace3a6a643531c2026fefd5ec/transformed/play-services-maps-19.0.0/AndroidManifest.xml:33:9-64
+30-->[com.google.android.gms:play-services-maps:19.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/f32d399ace3a6a643531c2026fefd5ec/transformed/play-services-maps-19.0.0/AndroidManifest.xml:33:18-61
+31    </queries>
+32
+33    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- Required by older versions of Google Play services to create IID tokens -->
+33-->[com.google.firebase:firebase-messaging:24.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/d975c5d5efb8e1283c10766e509470e8/transformed/firebase-messaging-24.0.0/AndroidManifest.xml:24:5-68
+33-->[com.google.firebase:firebase-messaging:24.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/d975c5d5efb8e1283c10766e509470e8/transformed/firebase-messaging-24.0.0/AndroidManifest.xml:24:22-65
+34    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+34-->[com.google.firebase:firebase-messaging:24.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/d975c5d5efb8e1283c10766e509470e8/transformed/firebase-messaging-24.0.0/AndroidManifest.xml:26:5-82
+34-->[com.google.firebase:firebase-messaging:24.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/d975c5d5efb8e1283c10766e509470e8/transformed/firebase-messaging-24.0.0/AndroidManifest.xml:26:22-79
+35    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+35-->[com.google.android.recaptcha:recaptcha:18.4.0] /home/bukeka/.gradle/caches/8.11.1/transforms/ea22de11e7cc6cde6f57eb025b529cf1/transformed/recaptcha-18.4.0/AndroidManifest.xml:9:5-98
+35-->[com.google.android.recaptcha:recaptcha:18.4.0] /home/bukeka/.gradle/caches/8.11.1/transforms/ea22de11e7cc6cde6f57eb025b529cf1/transformed/recaptcha-18.4.0/AndroidManifest.xml:9:22-95
+36
+37    <permission
+37-->[androidx.core:core:1.13.1] /home/bukeka/.gradle/caches/8.11.1/transforms/cd2801e9cd417f26d93556fcedd22105/transformed/core-1.13.1/AndroidManifest.xml:22:5-24:47
+38        android:name="com.example.myapp.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+38-->[androidx.core:core:1.13.1] /home/bukeka/.gradle/caches/8.11.1/transforms/cd2801e9cd417f26d93556fcedd22105/transformed/core-1.13.1/AndroidManifest.xml:23:9-81
+39        android:protectionLevel="signature" />
+39-->[androidx.core:core:1.13.1] /home/bukeka/.gradle/caches/8.11.1/transforms/cd2801e9cd417f26d93556fcedd22105/transformed/core-1.13.1/AndroidManifest.xml:24:9-44
+40
+41    <uses-permission android:name="com.example.myapp.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+41-->[androidx.core:core:1.13.1] /home/bukeka/.gradle/caches/8.11.1/transforms/cd2801e9cd417f26d93556fcedd22105/transformed/core-1.13.1/AndroidManifest.xml:26:5-97
+41-->[androidx.core:core:1.13.1] /home/bukeka/.gradle/caches/8.11.1/transforms/cd2801e9cd417f26d93556fcedd22105/transformed/core-1.13.1/AndroidManifest.xml:26:22-94
+42
+43    <application
+43-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:15:5-83:19
+44        android:allowBackup="true"
+44-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:16:9-35
+45        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+45-->[androidx.core:core:1.13.1] /home/bukeka/.gradle/caches/8.11.1/transforms/cd2801e9cd417f26d93556fcedd22105/transformed/core-1.13.1/AndroidManifest.xml:28:18-86
+46        android:dataExtractionRules="@xml/data_extraction_rules"
+46-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:17:9-65
+47        android:debuggable="true"
+48        android:extractNativeLibs="false"
+49        android:fullBackupContent="@xml/backup_rules"
+49-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:18:9-54
+50        android:icon="@mipmap/ic_launcher"
+50-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:19:9-43
+51        android:label="@string/app_name"
+51-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:20:9-41
+52        android:roundIcon="@mipmap/ic_launcher_round"
+52-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:21:9-54
+53        android:supportsRtl="true"
+53-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:22:9-35
+54        android:testOnly="true"
+55        android:theme="@style/Theme.MyApp" >
+55-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:23:9-43
+56        <meta-data
+56-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:26:9-28:71
+57            android:name="com.google.android.geo.API_KEY"
+57-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:27:13-58
+58            android:value="AIzaSyDrrc9tJvtfkURBLcaKtzhvZh23LfPNvkg" />
+58-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:28:13-68
+59
+60        <service
+60-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:30:9-36:19
+61            android:name="com.example.myapp.MyFirebaseMessagingService"
+61-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:31:13-55
+62            android:exported="false" >
+62-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:32:13-37
+63            <intent-filter>
+63-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:33:13-35:29
+64                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+64-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:34:17-78
+64-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:34:25-75
+65            </intent-filter>
+66        </service>
+67
+68        <activity
+68-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:38:9-42:20
+69            android:name="com.example.myapp.LoginActivity"
+69-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:39:13-42
+70            android:exported="true"
+70-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:40:13-36
+71            android:theme="@style/Theme.MyApp" >
+71-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:41:13-47
+72        </activity>
+73        <activity
+73-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:44:9-48:50
+74            android:name="com.example.myapp.SignupActivity"
+74-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:45:13-43
+75            android:exported="false"
+75-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:46:13-37
+76            android:label="@string/signup"
+76-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:47:13-43
+77            android:theme="@style/Theme.MyApp" />
+77-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:48:13-47
+78        <activity
+78-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:50:9-54:50
+79            android:name="com.example.myapp.ForgotPasswordActivity"
+79-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:51:13-51
+80            android:exported="false"
+80-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:52:13-37
+81            android:label="Forgot Password"
+81-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:53:13-44
+82            android:theme="@style/Theme.MyApp" />
+82-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:54:13-47
+83        <activity
+83-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:56:9-60:50
+84            android:name="com.example.myapp.StudentDashboardActivity"
+84-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:57:13-53
+85            android:exported="false"
+85-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:58:13-37
+86            android:label="@string/student_dashboard"
+86-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:59:13-54
+87            android:theme="@style/Theme.MyApp" />
+87-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:60:13-47
+88        <activity
+88-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:62:9-66:50
+89            android:name="com.example.myapp.SecurityDashboardActivity"
+89-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:63:13-54
+90            android:exported="false"
+90-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:64:13-37
+91            android:label="@string/security_dashboard"
+91-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:65:13-55
+92            android:theme="@style/Theme.MyApp" />
+92-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:66:13-47
+93        <activity
+93-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:68:9-72:50
+94            android:name="com.example.myapp.AdminDashboardActivity"
+94-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:69:13-51
+95            android:exported="false"
+95-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:70:13-37
+96            android:label="@string/admin_dashboard"
+96-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:71:13-52
+97            android:theme="@style/Theme.MyApp" />
+97-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:72:13-47
+98        <activity
+98-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:74:9-82:20
+99            android:name="com.example.myapp.MainActivity"
+99-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:75:13-41
+100            android:exported="true"
+100-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:76:13-36
+101            android:theme="@style/Theme.MyApp" >
+101-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:77:13-47
+102            <intent-filter>
+102-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:78:13-81:29
+103                <action android:name="android.intent.action.MAIN" />
+103-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:79:17-69
+103-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:79:25-66
+104
+105                <category android:name="android.intent.category.LAUNCHER" />
+105-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:80:17-77
+105-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:80:27-74
+106            </intent-filter>
+107        </activity>
+108        <!-- Needs to be explicitly declared on P+ -->
+109        <uses-library
+109-->[com.google.android.gms:play-services-maps:19.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/f32d399ace3a6a643531c2026fefd5ec/transformed/play-services-maps-19.0.0/AndroidManifest.xml:39:9-41:40
+110            android:name="org.apache.http.legacy"
+110-->[com.google.android.gms:play-services-maps:19.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/f32d399ace3a6a643531c2026fefd5ec/transformed/play-services-maps-19.0.0/AndroidManifest.xml:40:13-50
+111            android:required="false" />
+111-->[com.google.android.gms:play-services-maps:19.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/f32d399ace3a6a643531c2026fefd5ec/transformed/play-services-maps-19.0.0/AndroidManifest.xml:41:13-37
+112
+113        <service
+113-->[com.google.firebase:firebase-storage:21.0.1] /home/bukeka/.gradle/caches/8.11.1/transforms/8a912f37766ebd87f8588cd24f630dcb/transformed/firebase-storage-21.0.1/AndroidManifest.xml:27:9-36:19
+114            android:name="com.google.firebase.components.ComponentDiscoveryService"
+114-->[com.google.firebase:firebase-storage:21.0.1] /home/bukeka/.gradle/caches/8.11.1/transforms/8a912f37766ebd87f8588cd24f630dcb/transformed/firebase-storage-21.0.1/AndroidManifest.xml:28:13-84
+115            android:directBootAware="true"
+115-->[com.google.firebase:firebase-common:21.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/419e371d5695d3f22c3b126ee4801f14/transformed/firebase-common-21.0.0/AndroidManifest.xml:32:13-43
+116            android:exported="false" >
+116-->[com.google.firebase:firebase-storage:21.0.1] /home/bukeka/.gradle/caches/8.11.1/transforms/8a912f37766ebd87f8588cd24f630dcb/transformed/firebase-storage-21.0.1/AndroidManifest.xml:29:13-37
+117            <meta-data
+117-->[com.google.firebase:firebase-storage:21.0.1] /home/bukeka/.gradle/caches/8.11.1/transforms/8a912f37766ebd87f8588cd24f630dcb/transformed/firebase-storage-21.0.1/AndroidManifest.xml:30:13-32:85
+118                android:name="com.google.firebase.components:com.google.firebase.storage.FirebaseStorageKtxRegistrar"
+118-->[com.google.firebase:firebase-storage:21.0.1] /home/bukeka/.gradle/caches/8.11.1/transforms/8a912f37766ebd87f8588cd24f630dcb/transformed/firebase-storage-21.0.1/AndroidManifest.xml:31:17-118
+119                android:value="com.google.firebase.components.ComponentRegistrar" />
+119-->[com.google.firebase:firebase-storage:21.0.1] /home/bukeka/.gradle/caches/8.11.1/transforms/8a912f37766ebd87f8588cd24f630dcb/transformed/firebase-storage-21.0.1/AndroidManifest.xml:32:17-82
+120            <meta-data
+120-->[com.google.firebase:firebase-storage:21.0.1] /home/bukeka/.gradle/caches/8.11.1/transforms/8a912f37766ebd87f8588cd24f630dcb/transformed/firebase-storage-21.0.1/AndroidManifest.xml:33:13-35:85
+121                android:name="com.google.firebase.components:com.google.firebase.storage.StorageRegistrar"
+121-->[com.google.firebase:firebase-storage:21.0.1] /home/bukeka/.gradle/caches/8.11.1/transforms/8a912f37766ebd87f8588cd24f630dcb/transformed/firebase-storage-21.0.1/AndroidManifest.xml:34:17-107
+122                android:value="com.google.firebase.components.ComponentRegistrar" />
+122-->[com.google.firebase:firebase-storage:21.0.1] /home/bukeka/.gradle/caches/8.11.1/transforms/8a912f37766ebd87f8588cd24f630dcb/transformed/firebase-storage-21.0.1/AndroidManifest.xml:35:17-82
+123            <meta-data
+123-->[com.google.firebase:firebase-appcheck:18.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/b00d36b55e854e98a60bdb87517a1e4b/transformed/firebase-appcheck-18.0.0/AndroidManifest.xml:25:13-27:85
+124                android:name="com.google.firebase.components:com.google.firebase.appcheck.FirebaseAppCheckKtxRegistrar"
+124-->[com.google.firebase:firebase-appcheck:18.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/b00d36b55e854e98a60bdb87517a1e4b/transformed/firebase-appcheck-18.0.0/AndroidManifest.xml:26:17-120
+125                android:value="com.google.firebase.components.ComponentRegistrar" />
+125-->[com.google.firebase:firebase-appcheck:18.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/b00d36b55e854e98a60bdb87517a1e4b/transformed/firebase-appcheck-18.0.0/AndroidManifest.xml:27:17-82
+126            <meta-data
+126-->[com.google.firebase:firebase-appcheck:18.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/b00d36b55e854e98a60bdb87517a1e4b/transformed/firebase-appcheck-18.0.0/AndroidManifest.xml:28:13-30:85
+127                android:name="com.google.firebase.components:com.google.firebase.appcheck.FirebaseAppCheckRegistrar"
+127-->[com.google.firebase:firebase-appcheck:18.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/b00d36b55e854e98a60bdb87517a1e4b/transformed/firebase-appcheck-18.0.0/AndroidManifest.xml:29:17-117
+128                android:value="com.google.firebase.components.ComponentRegistrar" />
+128-->[com.google.firebase:firebase-appcheck:18.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/b00d36b55e854e98a60bdb87517a1e4b/transformed/firebase-appcheck-18.0.0/AndroidManifest.xml:30:17-82
+129            <meta-data
+129-->[com.google.firebase:firebase-functions-ktx:21.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/fb3c8469176a7926823419a3ad5a35d3/transformed/firebase-functions-ktx-21.0.0/AndroidManifest.xml:12:13-14:85
+130                android:name="com.google.firebase.components:com.google.firebase.functions.ktx.FirebaseFunctionsLegacyRegistrar"
+130-->[com.google.firebase:firebase-functions-ktx:21.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/fb3c8469176a7926823419a3ad5a35d3/transformed/firebase-functions-ktx-21.0.0/AndroidManifest.xml:13:17-129
+131                android:value="com.google.firebase.components.ComponentRegistrar" />
+131-->[com.google.firebase:firebase-functions-ktx:21.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/fb3c8469176a7926823419a3ad5a35d3/transformed/firebase-functions-ktx-21.0.0/AndroidManifest.xml:14:17-82
+132            <meta-data
+132-->[com.google.firebase:firebase-functions:21.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/f0520691825f7d613fc466c154477051/transformed/firebase-functions-21.0.0/AndroidManifest.xml:15:13-17:85
+133                android:name="com.google.firebase.components:com.google.firebase.functions.FirebaseFunctionsKtxRegistrar"
+133-->[com.google.firebase:firebase-functions:21.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/f0520691825f7d613fc466c154477051/transformed/firebase-functions-21.0.0/AndroidManifest.xml:16:17-122
+134                android:value="com.google.firebase.components.ComponentRegistrar" />
+134-->[com.google.firebase:firebase-functions:21.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/f0520691825f7d613fc466c154477051/transformed/firebase-functions-21.0.0/AndroidManifest.xml:17:17-82
+135            <meta-data
+135-->[com.google.firebase:firebase-functions:21.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/f0520691825f7d613fc466c154477051/transformed/firebase-functions-21.0.0/AndroidManifest.xml:18:13-20:85
+136                android:name="com.google.firebase.components:com.google.firebase.functions.FunctionsRegistrar"
+136-->[com.google.firebase:firebase-functions:21.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/f0520691825f7d613fc466c154477051/transformed/firebase-functions-21.0.0/AndroidManifest.xml:19:17-111
+137                android:value="com.google.firebase.components.ComponentRegistrar" />
+137-->[com.google.firebase:firebase-functions:21.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/f0520691825f7d613fc466c154477051/transformed/firebase-functions-21.0.0/AndroidManifest.xml:20:17-82
+138            <meta-data
+138-->[com.google.firebase:firebase-firestore-ktx:25.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/f8370ede0ade1a086a171f0d19182390/transformed/firebase-firestore-ktx-25.0.0/AndroidManifest.xml:12:13-14:85
+139                android:name="com.google.firebase.components:com.google.firebase.firestore.ktx.FirebaseFirestoreLegacyRegistrar"
+139-->[com.google.firebase:firebase-firestore-ktx:25.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/f8370ede0ade1a086a171f0d19182390/transformed/firebase-firestore-ktx-25.0.0/AndroidManifest.xml:13:17-129
+140                android:value="com.google.firebase.components.ComponentRegistrar" />
+140-->[com.google.firebase:firebase-firestore-ktx:25.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/f8370ede0ade1a086a171f0d19182390/transformed/firebase-firestore-ktx-25.0.0/AndroidManifest.xml:14:17-82
+141            <meta-data
+141-->[com.google.firebase:firebase-firestore:25.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/e8e9de30a73bf2a3b59e573c57f619af/transformed/firebase-firestore-25.0.0/AndroidManifest.xml:17:13-19:85
+142                android:name="com.google.firebase.components:com.google.firebase.firestore.FirebaseFirestoreKtxRegistrar"
+142-->[com.google.firebase:firebase-firestore:25.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/e8e9de30a73bf2a3b59e573c57f619af/transformed/firebase-firestore-25.0.0/AndroidManifest.xml:18:17-122
+143                android:value="com.google.firebase.components.ComponentRegistrar" />
+143-->[com.google.firebase:firebase-firestore:25.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/e8e9de30a73bf2a3b59e573c57f619af/transformed/firebase-firestore-25.0.0/AndroidManifest.xml:19:17-82
+144            <meta-data
+144-->[com.google.firebase:firebase-firestore:25.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/e8e9de30a73bf2a3b59e573c57f619af/transformed/firebase-firestore-25.0.0/AndroidManifest.xml:20:13-22:85
+145                android:name="com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar"
+145-->[com.google.firebase:firebase-firestore:25.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/e8e9de30a73bf2a3b59e573c57f619af/transformed/firebase-firestore-25.0.0/AndroidManifest.xml:21:17-111
+146                android:value="com.google.firebase.components.ComponentRegistrar" />
+146-->[com.google.firebase:firebase-firestore:25.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/e8e9de30a73bf2a3b59e573c57f619af/transformed/firebase-firestore-25.0.0/AndroidManifest.xml:22:17-82
+147            <meta-data
+147-->[com.google.firebase:firebase-auth-ktx:23.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/3b0260223303025e677cce314cca610b/transformed/firebase-auth-ktx-23.0.0/AndroidManifest.xml:11:13-13:85
+148                android:name="com.google.firebase.components:com.google.firebase.auth.ktx.FirebaseAuthLegacyRegistrar"
+148-->[com.google.firebase:firebase-auth-ktx:23.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/3b0260223303025e677cce314cca610b/transformed/firebase-auth-ktx-23.0.0/AndroidManifest.xml:12:17-119
+149                android:value="com.google.firebase.components.ComponentRegistrar" />
+149-->[com.google.firebase:firebase-auth-ktx:23.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/3b0260223303025e677cce314cca610b/transformed/firebase-auth-ktx-23.0.0/AndroidManifest.xml:13:17-82
+150            <meta-data
+150-->[com.google.firebase:firebase-auth:23.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/e4400e42fb9e1ca72954b617eb504b55/transformed/firebase-auth-23.0.0/AndroidManifest.xml:69:13-71:85
+151                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
+151-->[com.google.firebase:firebase-auth:23.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/e4400e42fb9e1ca72954b617eb504b55/transformed/firebase-auth-23.0.0/AndroidManifest.xml:70:17-109
+152                android:value="com.google.firebase.components.ComponentRegistrar" />
+152-->[com.google.firebase:firebase-auth:23.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/e4400e42fb9e1ca72954b617eb504b55/transformed/firebase-auth-23.0.0/AndroidManifest.xml:71:17-82
+153            <meta-data
+153-->[com.google.firebase:firebase-messaging-ktx:24.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/a414ec8a6b297024b1aa6aa2dcd683ca/transformed/firebase-messaging-ktx-24.0.0/AndroidManifest.xml:26:13-28:85
+154                android:name="com.google.firebase.components:com.google.firebase.messaging.ktx.FirebaseMessagingLegacyRegistrar"
+154-->[com.google.firebase:firebase-messaging-ktx:24.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/a414ec8a6b297024b1aa6aa2dcd683ca/transformed/firebase-messaging-ktx-24.0.0/AndroidManifest.xml:27:17-129
+155                android:value="com.google.firebase.components.ComponentRegistrar" />
+155-->[com.google.firebase:firebase-messaging-ktx:24.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/a414ec8a6b297024b1aa6aa2dcd683ca/transformed/firebase-messaging-ktx-24.0.0/AndroidManifest.xml:28:17-82
+156            <meta-data
+156-->[com.google.firebase:firebase-messaging:24.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/d975c5d5efb8e1283c10766e509470e8/transformed/firebase-messaging-24.0.0/AndroidManifest.xml:57:13-59:85
+157                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingKtxRegistrar"
+157-->[com.google.firebase:firebase-messaging:24.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/d975c5d5efb8e1283c10766e509470e8/transformed/firebase-messaging-24.0.0/AndroidManifest.xml:58:17-122
+158                android:value="com.google.firebase.components.ComponentRegistrar" />
+158-->[com.google.firebase:firebase-messaging:24.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/d975c5d5efb8e1283c10766e509470e8/transformed/firebase-messaging-24.0.0/AndroidManifest.xml:59:17-82
+159            <meta-data
+159-->[com.google.firebase:firebase-messaging:24.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/d975c5d5efb8e1283c10766e509470e8/transformed/firebase-messaging-24.0.0/AndroidManifest.xml:60:13-62:85
+160                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingRegistrar"
+160-->[com.google.firebase:firebase-messaging:24.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/d975c5d5efb8e1283c10766e509470e8/transformed/firebase-messaging-24.0.0/AndroidManifest.xml:61:17-119
+161                android:value="com.google.firebase.components.ComponentRegistrar" />
+161-->[com.google.firebase:firebase-messaging:24.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/d975c5d5efb8e1283c10766e509470e8/transformed/firebase-messaging-24.0.0/AndroidManifest.xml:62:17-82
+162            <meta-data
+162-->[com.google.firebase:firebase-iid:21.1.0] /home/bukeka/.gradle/caches/8.11.1/transforms/7ff7e858edc4bb54793a361f6d36992d/transformed/firebase-iid-21.1.0/AndroidManifest.xml:32:13-34:85
+163                android:name="com.google.firebase.components:com.google.firebase.iid.Registrar"
+163-->[com.google.firebase:firebase-iid:21.1.0] /home/bukeka/.gradle/caches/8.11.1/transforms/7ff7e858edc4bb54793a361f6d36992d/transformed/firebase-iid-21.1.0/AndroidManifest.xml:33:17-96
+164                android:value="com.google.firebase.components.ComponentRegistrar" />
+164-->[com.google.firebase:firebase-iid:21.1.0] /home/bukeka/.gradle/caches/8.11.1/transforms/7ff7e858edc4bb54793a361f6d36992d/transformed/firebase-iid-21.1.0/AndroidManifest.xml:34:17-82
+165            <meta-data
+165-->[com.google.firebase:firebase-installations:18.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/3611730b93d67473deadc71225148b6e/transformed/firebase-installations-18.0.0/AndroidManifest.xml:15:13-17:85
+166                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsKtxRegistrar"
+166-->[com.google.firebase:firebase-installations:18.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/3611730b93d67473deadc71225148b6e/transformed/firebase-installations-18.0.0/AndroidManifest.xml:16:17-130
+167                android:value="com.google.firebase.components.ComponentRegistrar" />
+167-->[com.google.firebase:firebase-installations:18.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/3611730b93d67473deadc71225148b6e/transformed/firebase-installations-18.0.0/AndroidManifest.xml:17:17-82
+168            <meta-data
+168-->[com.google.firebase:firebase-installations:18.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/3611730b93d67473deadc71225148b6e/transformed/firebase-installations-18.0.0/AndroidManifest.xml:18:13-20:85
+169                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
+169-->[com.google.firebase:firebase-installations:18.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/3611730b93d67473deadc71225148b6e/transformed/firebase-installations-18.0.0/AndroidManifest.xml:19:17-127
+170                android:value="com.google.firebase.components.ComponentRegistrar" />
+170-->[com.google.firebase:firebase-installations:18.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/3611730b93d67473deadc71225148b6e/transformed/firebase-installations-18.0.0/AndroidManifest.xml:20:17-82
+171            <meta-data
+171-->[com.google.firebase:firebase-common-ktx:21.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/3f14aca7b9a9ae6836dac60127c677dd/transformed/firebase-common-ktx-21.0.0/AndroidManifest.xml:12:13-14:85
+172                android:name="com.google.firebase.components:com.google.firebase.ktx.FirebaseCommonLegacyRegistrar"
+172-->[com.google.firebase:firebase-common-ktx:21.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/3f14aca7b9a9ae6836dac60127c677dd/transformed/firebase-common-ktx-21.0.0/AndroidManifest.xml:13:17-116
+173                android:value="com.google.firebase.components.ComponentRegistrar" />
+173-->[com.google.firebase:firebase-common-ktx:21.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/3f14aca7b9a9ae6836dac60127c677dd/transformed/firebase-common-ktx-21.0.0/AndroidManifest.xml:14:17-82
+174            <meta-data
+174-->[com.google.firebase:firebase-common:21.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/419e371d5695d3f22c3b126ee4801f14/transformed/firebase-common-21.0.0/AndroidManifest.xml:35:13-37:85
+175                android:name="com.google.firebase.components:com.google.firebase.FirebaseCommonKtxRegistrar"
+175-->[com.google.firebase:firebase-common:21.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/419e371d5695d3f22c3b126ee4801f14/transformed/firebase-common-21.0.0/AndroidManifest.xml:36:17-109
+176                android:value="com.google.firebase.components.ComponentRegistrar" />
+176-->[com.google.firebase:firebase-common:21.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/419e371d5695d3f22c3b126ee4801f14/transformed/firebase-common-21.0.0/AndroidManifest.xml:37:17-82
+177            <meta-data
+177-->[com.google.firebase:firebase-datatransport:18.2.0] /home/bukeka/.gradle/caches/8.11.1/transforms/6d64bf9fa9a8bb82c8396a268586d46f/transformed/firebase-datatransport-18.2.0/AndroidManifest.xml:25:13-27:85
+178                android:name="com.google.firebase.components:com.google.firebase.datatransport.TransportRegistrar"
+178-->[com.google.firebase:firebase-datatransport:18.2.0] /home/bukeka/.gradle/caches/8.11.1/transforms/6d64bf9fa9a8bb82c8396a268586d46f/transformed/firebase-datatransport-18.2.0/AndroidManifest.xml:26:17-115
+179                android:value="com.google.firebase.components.ComponentRegistrar" />
+179-->[com.google.firebase:firebase-datatransport:18.2.0] /home/bukeka/.gradle/caches/8.11.1/transforms/6d64bf9fa9a8bb82c8396a268586d46f/transformed/firebase-datatransport-18.2.0/AndroidManifest.xml:27:17-82
+180        </service>
+181
+182        <activity
+182-->[com.google.firebase:firebase-auth:23.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/e4400e42fb9e1ca72954b617eb504b55/transformed/firebase-auth-23.0.0/AndroidManifest.xml:29:9-46:20
+183            android:name="com.google.firebase.auth.internal.GenericIdpActivity"
+183-->[com.google.firebase:firebase-auth:23.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/e4400e42fb9e1ca72954b617eb504b55/transformed/firebase-auth-23.0.0/AndroidManifest.xml:30:13-80
+184            android:excludeFromRecents="true"
+184-->[com.google.firebase:firebase-auth:23.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/e4400e42fb9e1ca72954b617eb504b55/transformed/firebase-auth-23.0.0/AndroidManifest.xml:31:13-46
+185            android:exported="true"
+185-->[com.google.firebase:firebase-auth:23.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/e4400e42fb9e1ca72954b617eb504b55/transformed/firebase-auth-23.0.0/AndroidManifest.xml:32:13-36
+186            android:launchMode="singleTask"
+186-->[com.google.firebase:firebase-auth:23.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/e4400e42fb9e1ca72954b617eb504b55/transformed/firebase-auth-23.0.0/AndroidManifest.xml:33:13-44
+187            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+187-->[com.google.firebase:firebase-auth:23.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/e4400e42fb9e1ca72954b617eb504b55/transformed/firebase-auth-23.0.0/AndroidManifest.xml:34:13-72
+188            <intent-filter>
+188-->[com.google.firebase:firebase-auth:23.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/e4400e42fb9e1ca72954b617eb504b55/transformed/firebase-auth-23.0.0/AndroidManifest.xml:35:13-45:29
+189                <action android:name="android.intent.action.VIEW" />
+189-->[com.google.firebase:firebase-auth:23.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/e4400e42fb9e1ca72954b617eb504b55/transformed/firebase-auth-23.0.0/AndroidManifest.xml:36:17-69
+189-->[com.google.firebase:firebase-auth:23.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/e4400e42fb9e1ca72954b617eb504b55/transformed/firebase-auth-23.0.0/AndroidManifest.xml:36:25-66
+190
+191                <category android:name="android.intent.category.DEFAULT" />
+191-->[com.google.firebase:firebase-auth:23.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/e4400e42fb9e1ca72954b617eb504b55/transformed/firebase-auth-23.0.0/AndroidManifest.xml:38:17-76
+191-->[com.google.firebase:firebase-auth:23.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/e4400e42fb9e1ca72954b617eb504b55/transformed/firebase-auth-23.0.0/AndroidManifest.xml:38:27-73
+192                <category android:name="android.intent.category.BROWSABLE" />
+192-->[com.google.firebase:firebase-auth:23.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/e4400e42fb9e1ca72954b617eb504b55/transformed/firebase-auth-23.0.0/AndroidManifest.xml:39:17-78
+192-->[com.google.firebase:firebase-auth:23.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/e4400e42fb9e1ca72954b617eb504b55/transformed/firebase-auth-23.0.0/AndroidManifest.xml:39:27-75
+193
+194                <data
+194-->[com.google.firebase:firebase-auth:23.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/e4400e42fb9e1ca72954b617eb504b55/transformed/firebase-auth-23.0.0/AndroidManifest.xml:41:17-44:51
+195                    android:host="firebase.auth"
+195-->[com.google.firebase:firebase-auth:23.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/e4400e42fb9e1ca72954b617eb504b55/transformed/firebase-auth-23.0.0/AndroidManifest.xml:42:21-49
+196                    android:path="/"
+196-->[com.google.firebase:firebase-auth:23.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/e4400e42fb9e1ca72954b617eb504b55/transformed/firebase-auth-23.0.0/AndroidManifest.xml:43:21-37
+197                    android:scheme="genericidp" />
+197-->[com.google.firebase:firebase-auth:23.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/e4400e42fb9e1ca72954b617eb504b55/transformed/firebase-auth-23.0.0/AndroidManifest.xml:44:21-48
+198            </intent-filter>
+199        </activity>
+200        <activity
+200-->[com.google.firebase:firebase-auth:23.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/e4400e42fb9e1ca72954b617eb504b55/transformed/firebase-auth-23.0.0/AndroidManifest.xml:47:9-64:20
+201            android:name="com.google.firebase.auth.internal.RecaptchaActivity"
+201-->[com.google.firebase:firebase-auth:23.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/e4400e42fb9e1ca72954b617eb504b55/transformed/firebase-auth-23.0.0/AndroidManifest.xml:48:13-79
+202            android:excludeFromRecents="true"
+202-->[com.google.firebase:firebase-auth:23.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/e4400e42fb9e1ca72954b617eb504b55/transformed/firebase-auth-23.0.0/AndroidManifest.xml:49:13-46
+203            android:exported="true"
+203-->[com.google.firebase:firebase-auth:23.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/e4400e42fb9e1ca72954b617eb504b55/transformed/firebase-auth-23.0.0/AndroidManifest.xml:50:13-36
+204            android:launchMode="singleTask"
+204-->[com.google.firebase:firebase-auth:23.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/e4400e42fb9e1ca72954b617eb504b55/transformed/firebase-auth-23.0.0/AndroidManifest.xml:51:13-44
+205            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+205-->[com.google.firebase:firebase-auth:23.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/e4400e42fb9e1ca72954b617eb504b55/transformed/firebase-auth-23.0.0/AndroidManifest.xml:52:13-72
+206            <intent-filter>
+206-->[com.google.firebase:firebase-auth:23.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/e4400e42fb9e1ca72954b617eb504b55/transformed/firebase-auth-23.0.0/AndroidManifest.xml:53:13-63:29
+207                <action android:name="android.intent.action.VIEW" />
+207-->[com.google.firebase:firebase-auth:23.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/e4400e42fb9e1ca72954b617eb504b55/transformed/firebase-auth-23.0.0/AndroidManifest.xml:36:17-69
+207-->[com.google.firebase:firebase-auth:23.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/e4400e42fb9e1ca72954b617eb504b55/transformed/firebase-auth-23.0.0/AndroidManifest.xml:36:25-66
+208
+209                <category android:name="android.intent.category.DEFAULT" />
+209-->[com.google.firebase:firebase-auth:23.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/e4400e42fb9e1ca72954b617eb504b55/transformed/firebase-auth-23.0.0/AndroidManifest.xml:38:17-76
+209-->[com.google.firebase:firebase-auth:23.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/e4400e42fb9e1ca72954b617eb504b55/transformed/firebase-auth-23.0.0/AndroidManifest.xml:38:27-73
+210                <category android:name="android.intent.category.BROWSABLE" />
+210-->[com.google.firebase:firebase-auth:23.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/e4400e42fb9e1ca72954b617eb504b55/transformed/firebase-auth-23.0.0/AndroidManifest.xml:39:17-78
+210-->[com.google.firebase:firebase-auth:23.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/e4400e42fb9e1ca72954b617eb504b55/transformed/firebase-auth-23.0.0/AndroidManifest.xml:39:27-75
+211
+212                <data
+212-->[com.google.firebase:firebase-auth:23.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/e4400e42fb9e1ca72954b617eb504b55/transformed/firebase-auth-23.0.0/AndroidManifest.xml:41:17-44:51
+213                    android:host="firebase.auth"
+213-->[com.google.firebase:firebase-auth:23.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/e4400e42fb9e1ca72954b617eb504b55/transformed/firebase-auth-23.0.0/AndroidManifest.xml:42:21-49
+214                    android:path="/"
+214-->[com.google.firebase:firebase-auth:23.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/e4400e42fb9e1ca72954b617eb504b55/transformed/firebase-auth-23.0.0/AndroidManifest.xml:43:21-37
+215                    android:scheme="recaptcha" />
+215-->[com.google.firebase:firebase-auth:23.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/e4400e42fb9e1ca72954b617eb504b55/transformed/firebase-auth-23.0.0/AndroidManifest.xml:44:21-48
+216            </intent-filter>
+217        </activity>
+218
+219        <receiver
+219-->[com.google.firebase:firebase-messaging:24.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/d975c5d5efb8e1283c10766e509470e8/transformed/firebase-messaging-24.0.0/AndroidManifest.xml:29:9-40:20
+220            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
+220-->[com.google.firebase:firebase-messaging:24.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/d975c5d5efb8e1283c10766e509470e8/transformed/firebase-messaging-24.0.0/AndroidManifest.xml:30:13-78
+221            android:exported="true"
+221-->[com.google.firebase:firebase-messaging:24.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/d975c5d5efb8e1283c10766e509470e8/transformed/firebase-messaging-24.0.0/AndroidManifest.xml:31:13-36
+222            android:permission="com.google.android.c2dm.permission.SEND" >
+222-->[com.google.firebase:firebase-messaging:24.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/d975c5d5efb8e1283c10766e509470e8/transformed/firebase-messaging-24.0.0/AndroidManifest.xml:32:13-73
+223            <intent-filter>
+223-->[com.google.firebase:firebase-messaging:24.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/d975c5d5efb8e1283c10766e509470e8/transformed/firebase-messaging-24.0.0/AndroidManifest.xml:33:13-35:29
+224                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+224-->[com.google.firebase:firebase-messaging:24.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/d975c5d5efb8e1283c10766e509470e8/transformed/firebase-messaging-24.0.0/AndroidManifest.xml:34:17-81
+224-->[com.google.firebase:firebase-messaging:24.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/d975c5d5efb8e1283c10766e509470e8/transformed/firebase-messaging-24.0.0/AndroidManifest.xml:34:25-78
+225            </intent-filter>
+226
+227            <meta-data
+227-->[com.google.firebase:firebase-messaging:24.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/d975c5d5efb8e1283c10766e509470e8/transformed/firebase-messaging-24.0.0/AndroidManifest.xml:37:13-39:40
+228                android:name="com.google.android.gms.cloudmessaging.FINISHED_AFTER_HANDLED"
+228-->[com.google.firebase:firebase-messaging:24.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/d975c5d5efb8e1283c10766e509470e8/transformed/firebase-messaging-24.0.0/AndroidManifest.xml:38:17-92
+229                android:value="true" />
+229-->[com.google.firebase:firebase-messaging:24.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/d975c5d5efb8e1283c10766e509470e8/transformed/firebase-messaging-24.0.0/AndroidManifest.xml:39:17-37
+230        </receiver>
+231        <!--
+232             FirebaseMessagingService performs security checks at runtime,
+233             but set to not exported to explicitly avoid allowing another app to call it.
+234        -->
+235        <service
+235-->[com.google.firebase:firebase-messaging:24.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/d975c5d5efb8e1283c10766e509470e8/transformed/firebase-messaging-24.0.0/AndroidManifest.xml:46:9-53:19
+236            android:name="com.google.firebase.messaging.FirebaseMessagingService"
+236-->[com.google.firebase:firebase-messaging:24.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/d975c5d5efb8e1283c10766e509470e8/transformed/firebase-messaging-24.0.0/AndroidManifest.xml:47:13-82
+237            android:directBootAware="true"
+237-->[com.google.firebase:firebase-messaging:24.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/d975c5d5efb8e1283c10766e509470e8/transformed/firebase-messaging-24.0.0/AndroidManifest.xml:48:13-43
+238            android:exported="false" >
+238-->[com.google.firebase:firebase-messaging:24.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/d975c5d5efb8e1283c10766e509470e8/transformed/firebase-messaging-24.0.0/AndroidManifest.xml:49:13-37
+239            <intent-filter android:priority="-500" >
+239-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:33:13-35:29
+240                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+240-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:34:17-78
+240-->/home/bukeka/AndroidStudioProjects/PBDV_SecurityApp-master/app/src/main/AndroidManifest.xml:34:25-75
+241            </intent-filter>
+242        </service>
+243        <service
+243-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/bukeka/.gradle/caches/8.11.1/transforms/c87a37cbe684d625ccaec52a5b005969/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:24:9-32:19
+244            android:name="androidx.credentials.playservices.CredentialProviderMetadataHolder"
+244-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/bukeka/.gradle/caches/8.11.1/transforms/c87a37cbe684d625ccaec52a5b005969/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:25:13-94
+245            android:enabled="true"
+245-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/bukeka/.gradle/caches/8.11.1/transforms/c87a37cbe684d625ccaec52a5b005969/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:26:13-35
+246            android:exported="false" >
+246-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/bukeka/.gradle/caches/8.11.1/transforms/c87a37cbe684d625ccaec52a5b005969/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:27:13-37
+247            <meta-data
+247-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/bukeka/.gradle/caches/8.11.1/transforms/c87a37cbe684d625ccaec52a5b005969/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:29:13-31:104
+248                android:name="androidx.credentials.CREDENTIAL_PROVIDER_KEY"
+248-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/bukeka/.gradle/caches/8.11.1/transforms/c87a37cbe684d625ccaec52a5b005969/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:30:17-76
+249                android:value="androidx.credentials.playservices.CredentialProviderPlayServicesImpl" />
+249-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/bukeka/.gradle/caches/8.11.1/transforms/c87a37cbe684d625ccaec52a5b005969/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:31:17-101
+250        </service>
+251
+252        <activity
+252-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/bukeka/.gradle/caches/8.11.1/transforms/c87a37cbe684d625ccaec52a5b005969/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:34:9-41:20
+253            android:name="androidx.credentials.playservices.HiddenActivity"
+253-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/bukeka/.gradle/caches/8.11.1/transforms/c87a37cbe684d625ccaec52a5b005969/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:35:13-76
+254            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+254-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/bukeka/.gradle/caches/8.11.1/transforms/c87a37cbe684d625ccaec52a5b005969/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:36:13-87
+255            android:enabled="true"
+255-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/bukeka/.gradle/caches/8.11.1/transforms/c87a37cbe684d625ccaec52a5b005969/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:37:13-35
+256            android:exported="false"
+256-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/bukeka/.gradle/caches/8.11.1/transforms/c87a37cbe684d625ccaec52a5b005969/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:38:13-37
+257            android:fitsSystemWindows="true"
+257-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/bukeka/.gradle/caches/8.11.1/transforms/c87a37cbe684d625ccaec52a5b005969/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:39:13-45
+258            android:theme="@style/Theme.Hidden" >
+258-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /home/bukeka/.gradle/caches/8.11.1/transforms/c87a37cbe684d625ccaec52a5b005969/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:40:13-48
+259        </activity>
+260        <activity
+260-->[com.google.android.gms:play-services-auth:20.7.0] /home/bukeka/.gradle/caches/8.11.1/transforms/ab0da8fde1f2d54672a8112324cfbd7f/transformed/play-services-auth-20.7.0/AndroidManifest.xml:23:9-27:75
+261            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+261-->[com.google.android.gms:play-services-auth:20.7.0] /home/bukeka/.gradle/caches/8.11.1/transforms/ab0da8fde1f2d54672a8112324cfbd7f/transformed/play-services-auth-20.7.0/AndroidManifest.xml:24:13-93
+262            android:excludeFromRecents="true"
+262-->[com.google.android.gms:play-services-auth:20.7.0] /home/bukeka/.gradle/caches/8.11.1/transforms/ab0da8fde1f2d54672a8112324cfbd7f/transformed/play-services-auth-20.7.0/AndroidManifest.xml:25:13-46
+263            android:exported="false"
+263-->[com.google.android.gms:play-services-auth:20.7.0] /home/bukeka/.gradle/caches/8.11.1/transforms/ab0da8fde1f2d54672a8112324cfbd7f/transformed/play-services-auth-20.7.0/AndroidManifest.xml:26:13-37
+264            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+264-->[com.google.android.gms:play-services-auth:20.7.0] /home/bukeka/.gradle/caches/8.11.1/transforms/ab0da8fde1f2d54672a8112324cfbd7f/transformed/play-services-auth-20.7.0/AndroidManifest.xml:27:13-72
+265        <!--
+266            Service handling Google Sign-In user revocation. For apps that do not integrate with
+267            Google Sign-In, this service will never be started.
+268        -->
+269        <service
+269-->[com.google.android.gms:play-services-auth:20.7.0] /home/bukeka/.gradle/caches/8.11.1/transforms/ab0da8fde1f2d54672a8112324cfbd7f/transformed/play-services-auth-20.7.0/AndroidManifest.xml:33:9-37:51
+270            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+270-->[com.google.android.gms:play-services-auth:20.7.0] /home/bukeka/.gradle/caches/8.11.1/transforms/ab0da8fde1f2d54672a8112324cfbd7f/transformed/play-services-auth-20.7.0/AndroidManifest.xml:34:13-89
+271            android:exported="true"
+271-->[com.google.android.gms:play-services-auth:20.7.0] /home/bukeka/.gradle/caches/8.11.1/transforms/ab0da8fde1f2d54672a8112324cfbd7f/transformed/play-services-auth-20.7.0/AndroidManifest.xml:35:13-36
+272            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
+272-->[com.google.android.gms:play-services-auth:20.7.0] /home/bukeka/.gradle/caches/8.11.1/transforms/ab0da8fde1f2d54672a8112324cfbd7f/transformed/play-services-auth-20.7.0/AndroidManifest.xml:36:13-107
+273            android:visibleToInstantApps="true" />
+273-->[com.google.android.gms:play-services-auth:20.7.0] /home/bukeka/.gradle/caches/8.11.1/transforms/ab0da8fde1f2d54672a8112324cfbd7f/transformed/play-services-auth-20.7.0/AndroidManifest.xml:37:13-48
+274
+275        <activity
+275-->[com.google.android.gms:play-services-base:18.5.0] /home/bukeka/.gradle/caches/8.11.1/transforms/f6519f52389922e9a2fc7c25d2c122b3/transformed/play-services-base-18.5.0/AndroidManifest.xml:5:9-173
+276            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+276-->[com.google.android.gms:play-services-base:18.5.0] /home/bukeka/.gradle/caches/8.11.1/transforms/f6519f52389922e9a2fc7c25d2c122b3/transformed/play-services-base-18.5.0/AndroidManifest.xml:5:19-85
+277            android:exported="false"
+277-->[com.google.android.gms:play-services-base:18.5.0] /home/bukeka/.gradle/caches/8.11.1/transforms/f6519f52389922e9a2fc7c25d2c122b3/transformed/play-services-base-18.5.0/AndroidManifest.xml:5:146-170
+278            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+278-->[com.google.android.gms:play-services-base:18.5.0] /home/bukeka/.gradle/caches/8.11.1/transforms/f6519f52389922e9a2fc7c25d2c122b3/transformed/play-services-base-18.5.0/AndroidManifest.xml:5:86-145
+279
+280        <provider
+280-->[com.google.firebase:firebase-common:21.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/419e371d5695d3f22c3b126ee4801f14/transformed/firebase-common-21.0.0/AndroidManifest.xml:23:9-28:39
+281            android:name="com.google.firebase.provider.FirebaseInitProvider"
+281-->[com.google.firebase:firebase-common:21.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/419e371d5695d3f22c3b126ee4801f14/transformed/firebase-common-21.0.0/AndroidManifest.xml:24:13-77
+282            android:authorities="com.example.myapp.firebaseinitprovider"
+282-->[com.google.firebase:firebase-common:21.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/419e371d5695d3f22c3b126ee4801f14/transformed/firebase-common-21.0.0/AndroidManifest.xml:25:13-72
+283            android:directBootAware="true"
+283-->[com.google.firebase:firebase-common:21.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/419e371d5695d3f22c3b126ee4801f14/transformed/firebase-common-21.0.0/AndroidManifest.xml:26:13-43
+284            android:exported="false"
+284-->[com.google.firebase:firebase-common:21.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/419e371d5695d3f22c3b126ee4801f14/transformed/firebase-common-21.0.0/AndroidManifest.xml:27:13-37
+285            android:initOrder="100" />
+285-->[com.google.firebase:firebase-common:21.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/419e371d5695d3f22c3b126ee4801f14/transformed/firebase-common-21.0.0/AndroidManifest.xml:28:13-36
+286
+287        <uses-library
+287-->[androidx.window:window:1.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/57318210e65ae271359b903527eb1d26/transformed/window-1.0.0/AndroidManifest.xml:25:9-27:40
+288            android:name="androidx.window.extensions"
+288-->[androidx.window:window:1.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/57318210e65ae271359b903527eb1d26/transformed/window-1.0.0/AndroidManifest.xml:26:13-54
+289            android:required="false" />
+289-->[androidx.window:window:1.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/57318210e65ae271359b903527eb1d26/transformed/window-1.0.0/AndroidManifest.xml:27:13-37
+290        <uses-library
+290-->[androidx.window:window:1.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/57318210e65ae271359b903527eb1d26/transformed/window-1.0.0/AndroidManifest.xml:28:9-30:40
+291            android:name="androidx.window.sidecar"
+291-->[androidx.window:window:1.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/57318210e65ae271359b903527eb1d26/transformed/window-1.0.0/AndroidManifest.xml:29:13-51
+292            android:required="false" />
+292-->[androidx.window:window:1.0.0] /home/bukeka/.gradle/caches/8.11.1/transforms/57318210e65ae271359b903527eb1d26/transformed/window-1.0.0/AndroidManifest.xml:30:13-37
+293
+294        <activity
+294-->[androidx.compose.ui:ui-tooling-android:1.7.8] /home/bukeka/.gradle/caches/8.11.1/transforms/91bbf496012dd6f73f0cdf83291079ee/transformed/ui-tooling-release/AndroidManifest.xml:23:9-25:39
+295            android:name="androidx.compose.ui.tooling.PreviewActivity"
+295-->[androidx.compose.ui:ui-tooling-android:1.7.8] /home/bukeka/.gradle/caches/8.11.1/transforms/91bbf496012dd6f73f0cdf83291079ee/transformed/ui-tooling-release/AndroidManifest.xml:24:13-71
+296            android:exported="true" />
+296-->[androidx.compose.ui:ui-tooling-android:1.7.8] /home/bukeka/.gradle/caches/8.11.1/transforms/91bbf496012dd6f73f0cdf83291079ee/transformed/ui-tooling-release/AndroidManifest.xml:25:13-36
+297
+298        <provider
+298-->[androidx.emoji2:emoji2:1.3.0] /home/bukeka/.gradle/caches/8.11.1/transforms/ec2fed0d886aaf984f407f616a54af12/transformed/emoji2-1.3.0/AndroidManifest.xml:24:9-32:20
+299            android:name="androidx.startup.InitializationProvider"
+299-->[androidx.emoji2:emoji2:1.3.0] /home/bukeka/.gradle/caches/8.11.1/transforms/ec2fed0d886aaf984f407f616a54af12/transformed/emoji2-1.3.0/AndroidManifest.xml:25:13-67
+300            android:authorities="com.example.myapp.androidx-startup"
+300-->[androidx.emoji2:emoji2:1.3.0] /home/bukeka/.gradle/caches/8.11.1/transforms/ec2fed0d886aaf984f407f616a54af12/transformed/emoji2-1.3.0/AndroidManifest.xml:26:13-68
+301            android:exported="false" >
+301-->[androidx.emoji2:emoji2:1.3.0] /home/bukeka/.gradle/caches/8.11.1/transforms/ec2fed0d886aaf984f407f616a54af12/transformed/emoji2-1.3.0/AndroidManifest.xml:27:13-37
+302            <meta-data
+302-->[androidx.emoji2:emoji2:1.3.0] /home/bukeka/.gradle/caches/8.11.1/transforms/ec2fed0d886aaf984f407f616a54af12/transformed/emoji2-1.3.0/AndroidManifest.xml:29:13-31:52
+303                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+303-->[androidx.emoji2:emoji2:1.3.0] /home/bukeka/.gradle/caches/8.11.1/transforms/ec2fed0d886aaf984f407f616a54af12/transformed/emoji2-1.3.0/AndroidManifest.xml:30:17-75
+304                android:value="androidx.startup" />
+304-->[androidx.emoji2:emoji2:1.3.0] /home/bukeka/.gradle/caches/8.11.1/transforms/ec2fed0d886aaf984f407f616a54af12/transformed/emoji2-1.3.0/AndroidManifest.xml:31:17-49
+305            <meta-data
+305-->[androidx.lifecycle:lifecycle-process:2.9.0] /home/bukeka/.gradle/caches/8.11.1/transforms/e2b286df217017d653d312aad95b7010/transformed/lifecycle-process-2.9.0/AndroidManifest.xml:29:13-31:52
+306                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+306-->[androidx.lifecycle:lifecycle-process:2.9.0] /home/bukeka/.gradle/caches/8.11.1/transforms/e2b286df217017d653d312aad95b7010/transformed/lifecycle-process-2.9.0/AndroidManifest.xml:30:17-78
+307                android:value="androidx.startup" />
+307-->[androidx.lifecycle:lifecycle-process:2.9.0] /home/bukeka/.gradle/caches/8.11.1/transforms/e2b286df217017d653d312aad95b7010/transformed/lifecycle-process-2.9.0/AndroidManifest.xml:31:17-49
+308            <meta-data
+308-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/bukeka/.gradle/caches/8.11.1/transforms/067b58d6399ac57ba6698533d24d411f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:29:13-31:52
+309                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+309-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/bukeka/.gradle/caches/8.11.1/transforms/067b58d6399ac57ba6698533d24d411f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:30:17-85
+310                android:value="androidx.startup" />
+310-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/bukeka/.gradle/caches/8.11.1/transforms/067b58d6399ac57ba6698533d24d411f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:31:17-49
+311        </provider>
+312
+313        <activity
+313-->[androidx.compose.ui:ui-test-manifest:1.7.8] /home/bukeka/.gradle/caches/8.11.1/transforms/fd906d1a52d4423a514e7daf7e23c325/transformed/ui-test-manifest-1.7.8/AndroidManifest.xml:23:9-25:39
+314            android:name="androidx.activity.ComponentActivity"
+314-->[androidx.compose.ui:ui-test-manifest:1.7.8] /home/bukeka/.gradle/caches/8.11.1/transforms/fd906d1a52d4423a514e7daf7e23c325/transformed/ui-test-manifest-1.7.8/AndroidManifest.xml:24:13-63
+315            android:exported="true" />
+315-->[androidx.compose.ui:ui-test-manifest:1.7.8] /home/bukeka/.gradle/caches/8.11.1/transforms/fd906d1a52d4423a514e7daf7e23c325/transformed/ui-test-manifest-1.7.8/AndroidManifest.xml:25:13-36
+316
+317        <meta-data
+317-->[com.google.android.gms:play-services-basement:18.4.0] /home/bukeka/.gradle/caches/8.11.1/transforms/306bc43ff664cc15e4f9a05c06a34e04/transformed/play-services-basement-18.4.0/AndroidManifest.xml:6:9-122
+318            android:name="com.google.android.gms.version"
+318-->[com.google.android.gms:play-services-basement:18.4.0] /home/bukeka/.gradle/caches/8.11.1/transforms/306bc43ff664cc15e4f9a05c06a34e04/transformed/play-services-basement-18.4.0/AndroidManifest.xml:6:20-65
+319            android:value="@integer/google_play_services_version" />
+319-->[com.google.android.gms:play-services-basement:18.4.0] /home/bukeka/.gradle/caches/8.11.1/transforms/306bc43ff664cc15e4f9a05c06a34e04/transformed/play-services-basement-18.4.0/AndroidManifest.xml:6:66-119
+320
+321        <receiver
+321-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/bukeka/.gradle/caches/8.11.1/transforms/067b58d6399ac57ba6698533d24d411f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:34:9-52:20
+322            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+322-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/bukeka/.gradle/caches/8.11.1/transforms/067b58d6399ac57ba6698533d24d411f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:35:13-76
+323            android:directBootAware="false"
+323-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/bukeka/.gradle/caches/8.11.1/transforms/067b58d6399ac57ba6698533d24d411f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:36:13-44
+324            android:enabled="true"
+324-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/bukeka/.gradle/caches/8.11.1/transforms/067b58d6399ac57ba6698533d24d411f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:37:13-35
+325            android:exported="true"
+325-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/bukeka/.gradle/caches/8.11.1/transforms/067b58d6399ac57ba6698533d24d411f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:38:13-36
+326            android:permission="android.permission.DUMP" >
+326-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/bukeka/.gradle/caches/8.11.1/transforms/067b58d6399ac57ba6698533d24d411f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:39:13-57
+327            <intent-filter>
+327-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/bukeka/.gradle/caches/8.11.1/transforms/067b58d6399ac57ba6698533d24d411f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:40:13-42:29
+328                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+328-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/bukeka/.gradle/caches/8.11.1/transforms/067b58d6399ac57ba6698533d24d411f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:41:17-91
+328-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/bukeka/.gradle/caches/8.11.1/transforms/067b58d6399ac57ba6698533d24d411f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:41:25-88
+329            </intent-filter>
+330            <intent-filter>
+330-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/bukeka/.gradle/caches/8.11.1/transforms/067b58d6399ac57ba6698533d24d411f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:43:13-45:29
+331                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+331-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/bukeka/.gradle/caches/8.11.1/transforms/067b58d6399ac57ba6698533d24d411f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:44:17-85
+331-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/bukeka/.gradle/caches/8.11.1/transforms/067b58d6399ac57ba6698533d24d411f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:44:25-82
+332            </intent-filter>
+333            <intent-filter>
+333-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/bukeka/.gradle/caches/8.11.1/transforms/067b58d6399ac57ba6698533d24d411f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:46:13-48:29
+334                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+334-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/bukeka/.gradle/caches/8.11.1/transforms/067b58d6399ac57ba6698533d24d411f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:47:17-88
+334-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/bukeka/.gradle/caches/8.11.1/transforms/067b58d6399ac57ba6698533d24d411f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:47:25-85
+335            </intent-filter>
+336            <intent-filter>
+336-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/bukeka/.gradle/caches/8.11.1/transforms/067b58d6399ac57ba6698533d24d411f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:49:13-51:29
+337                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+337-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/bukeka/.gradle/caches/8.11.1/transforms/067b58d6399ac57ba6698533d24d411f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:50:17-95
+337-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/bukeka/.gradle/caches/8.11.1/transforms/067b58d6399ac57ba6698533d24d411f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:50:25-92
+338            </intent-filter>
+339        </receiver>
+340
+341        <service
+341-->[com.google.android.datatransport:transport-backend-cct:3.1.9] /home/bukeka/.gradle/caches/8.11.1/transforms/93743e08dcebeb772b03105b7ac5bf56/transformed/transport-backend-cct-3.1.9/AndroidManifest.xml:28:9-34:19
+342            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
+342-->[com.google.android.datatransport:transport-backend-cct:3.1.9] /home/bukeka/.gradle/caches/8.11.1/transforms/93743e08dcebeb772b03105b7ac5bf56/transformed/transport-backend-cct-3.1.9/AndroidManifest.xml:29:13-103
+343            android:exported="false" >
+343-->[com.google.android.datatransport:transport-backend-cct:3.1.9] /home/bukeka/.gradle/caches/8.11.1/transforms/93743e08dcebeb772b03105b7ac5bf56/transformed/transport-backend-cct-3.1.9/AndroidManifest.xml:30:13-37
+344            <meta-data
+344-->[com.google.android.datatransport:transport-backend-cct:3.1.9] /home/bukeka/.gradle/caches/8.11.1/transforms/93743e08dcebeb772b03105b7ac5bf56/transformed/transport-backend-cct-3.1.9/AndroidManifest.xml:31:13-33:39
+345                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
+345-->[com.google.android.datatransport:transport-backend-cct:3.1.9] /home/bukeka/.gradle/caches/8.11.1/transforms/93743e08dcebeb772b03105b7ac5bf56/transformed/transport-backend-cct-3.1.9/AndroidManifest.xml:32:17-94
+346                android:value="cct" />
+346-->[com.google.android.datatransport:transport-backend-cct:3.1.9] /home/bukeka/.gradle/caches/8.11.1/transforms/93743e08dcebeb772b03105b7ac5bf56/transformed/transport-backend-cct-3.1.9/AndroidManifest.xml:33:17-36
+347        </service>
+348        <service
+348-->[com.google.android.datatransport:transport-runtime:3.1.9] /home/bukeka/.gradle/caches/8.11.1/transforms/b4b1fc0db93aa1f853b2c0efc0995af5/transformed/transport-runtime-3.1.9/AndroidManifest.xml:26:9-30:19
+349            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
+349-->[com.google.android.datatransport:transport-runtime:3.1.9] /home/bukeka/.gradle/caches/8.11.1/transforms/b4b1fc0db93aa1f853b2c0efc0995af5/transformed/transport-runtime-3.1.9/AndroidManifest.xml:27:13-117
+350            android:exported="false"
+350-->[com.google.android.datatransport:transport-runtime:3.1.9] /home/bukeka/.gradle/caches/8.11.1/transforms/b4b1fc0db93aa1f853b2c0efc0995af5/transformed/transport-runtime-3.1.9/AndroidManifest.xml:28:13-37
+351            android:permission="android.permission.BIND_JOB_SERVICE" >
+351-->[com.google.android.datatransport:transport-runtime:3.1.9] /home/bukeka/.gradle/caches/8.11.1/transforms/b4b1fc0db93aa1f853b2c0efc0995af5/transformed/transport-runtime-3.1.9/AndroidManifest.xml:29:13-69
+352        </service>
+353
+354        <receiver
+354-->[com.google.android.datatransport:transport-runtime:3.1.9] /home/bukeka/.gradle/caches/8.11.1/transforms/b4b1fc0db93aa1f853b2c0efc0995af5/transformed/transport-runtime-3.1.9/AndroidManifest.xml:32:9-34:40
+355            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
+355-->[com.google.android.datatransport:transport-runtime:3.1.9] /home/bukeka/.gradle/caches/8.11.1/transforms/b4b1fc0db93aa1f853b2c0efc0995af5/transformed/transport-runtime-3.1.9/AndroidManifest.xml:33:13-132
+356            android:exported="false" />
+356-->[com.google.android.datatransport:transport-runtime:3.1.9] /home/bukeka/.gradle/caches/8.11.1/transforms/b4b1fc0db93aa1f853b2c0efc0995af5/transformed/transport-runtime-3.1.9/AndroidManifest.xml:34:13-37
+357    </application>
+358
+359</manifest>

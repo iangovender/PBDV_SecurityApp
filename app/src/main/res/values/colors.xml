@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Your custom colors -->
+    <color name="primary_color">#A0567C</color>         <!-- Purple-ish -->
+    <color name="primary_container">#4C64A4</color>    <!-- Blue -->
+    <color name="secondary_color">#147C34</color>      <!-- Green -->
+    <color name="secondary_container">#1C1C1C</color>  <!-- Dark gray -->
+    <color name="error_color">#FF0000</color>          <!-- Red -->
+    <color name="error_container">#FFCDD2</color>
+
+    <!-- Surface colors -->
+    <color name="surface_color">#FFFFFF</color>
+    <color name="surface_variant">#F5F5F5</color>
+    <color name="on_surface">#1C1C1C</color>
+
+    <!-- Standard colors -->
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
+</resources>
