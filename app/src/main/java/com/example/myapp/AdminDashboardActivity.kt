@@ -1,4 +1,4 @@
-package com.example.myapp // Or com.example.myapp.admin if you prefer
+package com.example.myapp 
 
 import android.content.Intent
 import android.os.Bundle
@@ -15,7 +15,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.myapp.screens.IncidentManagementScreen // Import IncidentManagementScreen
+import com.example.myapp.screens.IncidentManagementScreen 
 import com.example.myapp.NotificationManagementScreen
 import com.example.myapp.ui.screens.admin.AdminDashboardScreen
 import com.example.myapp.ui.theme.MyAppTheme
@@ -92,7 +92,7 @@ class AdminDashboardActivity : ComponentActivity() {
                     navController = navController
                 )
             }
-            composable(AdminDestinations.INCIDENT_MANAGEMENT) { // New composable destination for incidents
+            composable(AdminDestinations.INCIDENT_MANAGEMENT) { 
                 IncidentManagementScreen(
                     adminViewModel = adminViewModel,
                     navController = navController
