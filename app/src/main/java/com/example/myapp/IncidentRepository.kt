@@ -4,7 +4,7 @@ import android.util.Log
 import com.example.myapp.Incident
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
-// import com.google.firebase.firestore.ktx.toObject // Not strictly needed if using toObjects for lists
+
 import com.google.firebase.firestore.ktx.toObjects
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -43,8 +43,7 @@ class IncidentRepository {
             query = query.whereEqualTo("status", statusFilter.lowercase()) // Ensure status is stored consistently (e.g., lowercase)
         }
 
-        // It's important that the ViewModel manages the lifecycle of this listener.
-        // For example, cancelling it when the ViewModel is cleared.
+       
         query.addSnapshotListener { snapshot, error ->
             if (error != null) {
                 Log.w(TAG, "Listen failed for incidents.", error)
@@ -63,11 +62,7 @@ class IncidentRepository {
                 }
             }
         }
-        // To properly manage the listener lifecycle, the ViewModel collecting this Flow
-        // should also handle the cancellation of 'listenerRegistration' when appropriate.
-        // One way is to expose 'listenerRegistration' or a method to cancel it from the repository.
-        // Or, use callbackFlow for more control over listener registration and cancellation within the flow builder.
-
+        
         return incidentsFlow.asStateFlow()
     }
 
@@ -97,8 +92,5 @@ class IncidentRepository {
         }
     }
 
-    // Potential future methods:
-    // suspend fun getIncidentById(incidentId: String): Result<Incident?>
-    // suspend fun createIncident(incident: Incident): Result<String> // Returns new incident ID
-    // suspend fun deleteIncident(incidentId: String): Result<Unit>
+    
 }
