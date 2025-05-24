@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.myapp.AdminViewModel
-import com.example.myapp.Notification // Your Notification data class
+import com.example.myapp.Notification 
 import com.example.myapp.ui.theme.MyAppTheme
 import com.google.firebase.Timestamp
 import java.text.SimpleDateFormat
@@ -27,7 +27,7 @@ import java.util.*
 @Composable
 fun NotificationManagementScreen(
     adminViewModel: AdminViewModel = viewModel(),
-    navController: androidx.navigation.NavController // For back navigation
+    navController: androidx.navigation.NavController 
 ) {
     val notifications by adminViewModel.notifications.collectAsState()
     val isLoading by adminViewModel.isNotificationsLoading.collectAsState()
@@ -219,7 +219,7 @@ fun CreateNotificationDialog(
                     maxLines = 5
                 )
 
-                // Notification Type Dropdown
+                
                 ExposedDropdownMenuBox(
                     expanded = typeExpanded,
                     onExpandedChange = { typeExpanded = !typeExpanded },
@@ -249,7 +249,7 @@ fun CreateNotificationDialog(
                     }
                 }
 
-                // Target Role Dropdown
+                
                 ExposedDropdownMenuBox(
                     expanded = roleExpanded,
                     onExpandedChange = { roleExpanded = !roleExpanded },
