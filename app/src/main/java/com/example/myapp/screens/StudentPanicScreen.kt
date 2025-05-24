@@ -1,6 +1,6 @@
 package com.example.myapp.screens
 
-//package com.example.campussecuritysystem.ui.screens
+
 
 import android.content.Context
 import android.location.Location
