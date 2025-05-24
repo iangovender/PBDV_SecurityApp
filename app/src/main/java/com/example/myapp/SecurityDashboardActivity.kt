@@ -21,7 +21,7 @@ class SecurityDashboardActivity : ComponentActivity() {
             MyAppTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background  // Fixed: Changed 'dili' to 'color'
+                    color = MaterialTheme.colorScheme.background  
                 ) {
                     SecurityDashboardScreen(
                         onLogout = {
