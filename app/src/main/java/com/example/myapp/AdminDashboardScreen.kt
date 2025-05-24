@@ -1,4 +1,4 @@
-package com.example.myapp // Or your preferred package for admin screens
+package com.example.myapp 
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -33,10 +33,10 @@ import com.example.myapp.ui.theme.MyAppTheme
 // Data class for individual dashboard items
 data class DashboardItem(
     val title: String,
-    val count: Int? = null, // Make count optional for items like navigation
+    val count: Int? = null, 
     val icon: ImageVector,
     val color: Color,
-    val onClick: (() -> Unit)? = null // Optional onClick for navigation items
+    val onClick: (() -> Unit)? = null 
 )
 
 //@OptIn(ExperimentalMaterial3Api::class)
@@ -45,7 +45,7 @@ data class DashboardItem(
 //    adminViewModel: AdminViewModel = viewModel(),
 //    onNavigateToUserManagement: () -> Unit,
 //    onNavigateToNotificationManagement: () -> Unit,
-//    onNavigateToIncidentManagement: () -> Unit, // New navigation lambda for incidents
+//    onNavigateToIncidentManagement: () -> Unit, 
 //    onLogout: () -> Unit
 //) {
 //    val analytics by adminViewModel.analytics.collectAsState()
@@ -133,7 +133,7 @@ data class DashboardItem(
 //                        }
 //                    }
 //                }
-//                // Optional: Add Spacer if content is short and you want to push it up
+//                
 //                if (dashboardItems.size <= 6) { // Adjust this condition based on your layout preference
 //                    Spacer(Modifier.weight(1f))
 //                }
