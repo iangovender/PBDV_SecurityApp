@@ -80,7 +80,7 @@ fun MapScreen(
         }
     )
 
-    // Request permissions when the screen is first displayed
+    
     LaunchedEffect(Unit) {
         if (!locationUtils.hasLocationPermission(context)) {
             requestPermissionLauncher.launch(
@@ -94,7 +94,7 @@ fun MapScreen(
         }
     }
 
-    // Fetch alert location from Firestore
+    
     LaunchedEffect(alertId) {
         val db = Firebase.firestore
         db.collection("sos_alerts")
