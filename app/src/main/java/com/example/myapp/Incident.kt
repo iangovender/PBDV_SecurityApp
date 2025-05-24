@@ -2,7 +2,7 @@ package com.example.myapp
 
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.DocumentId
-import com.example.myapp.LocationData // Added import for LocationData
+import com.example.myapp.LocationData 
 
 data class Incident(
     @DocumentId val id: String = "",
