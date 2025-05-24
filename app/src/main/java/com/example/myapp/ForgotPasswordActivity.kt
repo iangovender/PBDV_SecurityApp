@@ -28,7 +28,7 @@ class ForgotPasswordActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     ForgotPasswordScreen(
-                        onBack = { finish() } // Close the activity and return to the login screen
+                        onBack = { finish() } 
                     )
                 }
             }
