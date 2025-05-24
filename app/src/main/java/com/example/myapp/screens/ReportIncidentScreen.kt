@@ -222,9 +222,9 @@ private fun resolveIncident(context: Context, db: FirebaseFirestore, incidentId:
         .addOnSuccessListener {
             Toast.makeText(context, "Incident resolved and deleted", Toast.LENGTH_SHORT).show()
 
-            // Send push notification to security_team
+            
             val notification = hashMapOf(
-                "campusId" to "unknown", // Replace with actual campusId if available
+                "campusId" to "unknown", 
                 "title" to "Incident Resolved",
                 "message" to "Incident ($incidentType) reported by student $studentId has been resolved.",
                 "type" to "incident",
