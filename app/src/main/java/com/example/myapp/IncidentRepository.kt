@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.tasks.await
-import com.google.firebase.Timestamp // Ensure Timestamp is imported
+import com.google.firebase.Timestamp 
 
 class IncidentRepository {
 
@@ -40,14 +40,14 @@ class IncidentRepository {
             query = query.whereEqualTo("campusId", campusFilter)
         }
         if (!statusFilter.isNullOrBlank() && statusFilter != "All Statuses") {
-            query = query.whereEqualTo("status", statusFilter.lowercase()) // Ensure status is stored consistently (e.g., lowercase)
+            query = query.whereEqualTo("status", statusFilter.lowercase()) 
         }
 
        
         query.addSnapshotListener { snapshot, error ->
             if (error != null) {
                 Log.w(TAG, "Listen failed for incidents.", error)
-                incidentsFlow.value = emptyList() // Or emit an error state
+                incidentsFlow.value = emptyList() 
                 return@addSnapshotListener
             }
 
