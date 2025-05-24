@@ -58,7 +58,7 @@ class LoginActivity : ComponentActivity() {
                             when (user.role) {
                                 "student" -> startActivity(Intent(this, StudentDashboardActivity::class.java))
                                 "security" -> {
-                                    // Navigate to MainActivity with the "security" route
+                                    
                                     val intent = Intent(this, MainActivity::class.java).apply {
                                         putExtra("destination", "security")
                                     }
