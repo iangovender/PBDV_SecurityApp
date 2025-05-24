@@ -1,14 +1,14 @@
-// File: app/src/main/java/com/example/myapp/AdminViewModel.kt
+
 package com.example.myapp
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.myapp.Incident // Import Incident data class
+import com.example.myapp.Incident 
 import com.example.myapp.Notification
 import com.example.myapp.User
 import com.example.myapp.SosAlert
-import com.example.myapp.IncidentRepository // Import IncidentRepository
+import com.example.myapp.IncidentRepository 
 import com.example.myapp.NotificationRepository
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
@@ -69,8 +69,7 @@ class AdminViewModel : ViewModel() {
     private val repository = AdminRepository()
     private val db = FirebaseFirestore.getInstance()
     private val notificationRepository = NotificationRepository()
-    private val incidentRepository = IncidentRepository() // Instantiate IncidentRepository
-
+    private val incidentRepository = IncidentRepository() 
     // Analytics StateFlow
     private val _analytics = MutableStateFlow(AdminDashboardAnalytics())
     val analytics: StateFlow<AdminDashboardAnalytics> = _analytics.asStateFlow()
@@ -83,7 +82,7 @@ class AdminViewModel : ViewModel() {
     private val _selectedUser = MutableStateFlow<User?>(null)
     val selectedUser: StateFlow<User?> = _selectedUser.asStateFlow()
 
-    // --- Notifications StateFlows ---
+    
     private val _notifications = MutableStateFlow<List<Notification>>(emptyList())
     val notifications: StateFlow<List<Notification>> = _notifications.asStateFlow()
 
@@ -93,12 +92,12 @@ class AdminViewModel : ViewModel() {
     private val _notificationError = MutableStateFlow<String?>(null)
     val notificationError: StateFlow<String?> = _notificationError.asStateFlow()
 
-    // --- Incident Management StateFlows ---
-    private val _rawIncidents = MutableStateFlow<List<Incident>>(emptyList()) // Raw list from Firestore
+    
+    private val _rawIncidents = MutableStateFlow<List<Incident>>(emptyList()) 
 
     val incidentSearchQuery = MutableStateFlow("")
-    val incidentCampusFilter = MutableStateFlow<String?>(null) // e.g., "All Campuses" or specific ID
-    val incidentStatusFilter = MutableStateFlow<String?>(null) // e.g., "All Statuses", "active", "resolved"
+    val incidentCampusFilter = MutableStateFlow<String?>(null) 
+    val incidentStatusFilter = MutableStateFlow<String?>(null) 
 
     private val _isIncidentsLoading = MutableStateFlow(false)
     val isIncidentsLoading: StateFlow<Boolean> = _isIncidentsLoading.asStateFlow()
@@ -106,11 +105,11 @@ class AdminViewModel : ViewModel() {
     private val _incidentError = MutableStateFlow<String?>(null)
     val incidentError: StateFlow<String?> = _incidentError.asStateFlow()
 
-    // Combined and filtered incidents list exposed to the UI
+    
     val filteredIncidents: StateFlow<List<Incident>> = combine(
         _rawIncidents,
         incidentSearchQuery,
-        // incidentCampusFilter, // Firestore query handles these, but search is client-side
+        // incidentCampusFilter, 
         // incidentStatusFilter
     ) { incidents, query /*, campus, status */ ->
         // Apply search query client-side
@@ -120,16 +119,15 @@ class AdminViewModel : ViewModel() {
             incidents.filter { incident ->
                 incident.type.contains(query, ignoreCase = true) ||
                         incident.description.contains(query, ignoreCase = true) ||
-                        incident.id.contains(query, ignoreCase = true) || // Allow searching by ID
+                        incident.id.contains(query, ignoreCase = true) || 
                         incident.reportedBy.contains(query, ignoreCase = true)
             }
         }
-        // Campus and status filtering is done by the Firestore query in the repository
+        
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
 
-    // --- End of Incident Management StateFlows ---
-
-    // General Loading and error states
+    
+    
     private val _isLoading = MutableStateFlow(false)
     val isLoading: StateFlow<Boolean> = _isLoading.asStateFlow()
 
@@ -189,7 +187,7 @@ class AdminViewModel : ViewModel() {
                 _analytics.value = result
                 _error.value = null
             } catch (e: Exception) {
-                // MODIFY THIS ERROR HANDLING to be more specific
+                
                 _error.value = when {
                     e.message?.contains("Failed to convert value of type java.lang.String to Timestamp") == true -> {
                         "Data format error. Please ensure all timestamps are properly formatted."
@@ -205,7 +203,7 @@ class AdminViewModel : ViewModel() {
         }
     }
 
-    // --- Notification Management Functions ---
+   
     fun fetchNotifications() {
         viewModelScope.launch {
             _isNotificationsLoading.value = true
@@ -236,7 +234,7 @@ class AdminViewModel : ViewModel() {
             return
         }
         viewModelScope.launch {
-            // Use a specific loading state or general if preferred
+            
             _isNotificationsLoading.value = true
             _notificationError.value = null
             val newNotification = Notification(
@@ -281,13 +279,13 @@ class AdminViewModel : ViewModel() {
             _isIncidentsLoading.value = true
             _incidentError.value = null
 
-            // Combine filters to re-trigger observation when any filter changes
+            
             combine(
                 incidentCampusFilter,
                 incidentStatusFilter
             ) { campus, status ->
                 Pair(campus, status)
-            }.flatMapLatest { (campus, status) -> // Use flatMapLatest to cancel previous collection when filters change
+            }.flatMapLatest { (campus, status) -> 
                 incidentRepository.getIncidents(
                     campusFilter = if (campus == "All Campuses") null else campus,
                     statusFilter = if (status == "All Statuses") null else status
@@ -296,13 +294,13 @@ class AdminViewModel : ViewModel() {
                 .catch { e ->
                     Log.e("AdminViewModel", "Error observing incidents", e)
                     _incidentError.value = "Failed to load incidents: ${e.message}"
-                    _rawIncidents.value = emptyList() // Clear previous data on error
+                    _rawIncidents.value = emptyList() 
                     _isIncidentsLoading.value = false
                 }
                 .collect { incidentList ->
                     _rawIncidents.value = incidentList
                     _isIncidentsLoading.value = false
-                    _incidentError.value = null // Clear error on successful fetch
+                    _incidentError.value = null 
                     if (incidentList.isEmpty()) {
                         Log.d("AdminViewModel", "No incidents found for current filters.")
                     }
@@ -310,48 +308,37 @@ class AdminViewModel : ViewModel() {
         }
     }
 
-    /**
-     * Updates the search query for incidents.
-     */
+    
     fun onIncidentSearchQueryChanged(query: String) {
         incidentSearchQuery.value = query
     }
 
-    /**
-     * Updates the campus filter for incidents and triggers re-fetching.
-     */
+    
     fun onIncidentCampusFilterChanged(campus: String?) {
         incidentCampusFilter.value = campus
-        // observeIncidents() // Re-observing is handled by flatMapLatest on filter change
+        // observeIncidents() 
     }
 
-    /**
-     * Updates the status filter for incidents and triggers re-fetching.
-     */
+    
     fun onIncidentStatusFilterChanged(status: String?) {
         incidentStatusFilter.value = status
-        // observeIncidents() // Re-observing is handled by flatMapLatest on filter change
+        // observeIncidents() 
     }
 
-    /**
-     * Updates the status of a given incident.
-     * @param incidentId The ID of the incident.
-     * @param newStatus The new status to set.
-     * @param onResult Callback with success status and message.
-     */
+    
     fun updateIncidentStatus(incidentId: String, newStatus: String, onResult: (Boolean, String?) -> Unit) {
         if (incidentId.isBlank() || newStatus.isBlank()) {
             onResult(false, "Incident ID and new status cannot be blank.")
             return
         }
         viewModelScope.launch {
-            _isIncidentsLoading.value = true // Can use a more specific loading state if preferred
+            _isIncidentsLoading.value = true 
             val result = incidentRepository.updateIncidentStatus(incidentId, newStatus)
             _isIncidentsLoading.value = false
             if (result.isSuccess) {
                 Log.d("AdminViewModel", "Incident $incidentId status updated to $newStatus.")
                 onResult(true, "Incident status updated successfully.")
-                // The live query from observeIncidents should automatically update the list.
+               
             } else {
                 val errorMsg = "Failed to update incident status: ${result.exceptionOrNull()?.message}"
                 Log.e("AdminViewModel", errorMsg)
@@ -360,9 +347,7 @@ class AdminViewModel : ViewModel() {
             }
         }
     }
-    // --- End of Incident Management Functions ---
-
-    // --- User Management Functions (existing) ---
+    
     fun fetchUsers(
         searchQuery: String = "",
         campusId: String? = null,
@@ -522,7 +507,7 @@ class AdminRepository {
 
     suspend fun getDashboardData(): AdminDashboardAnalytics {
         return try {
-            // Implement your actual Firestore query here
+            
             val snapshot = db.collection("admin_analytics")
                 .document("dashboard")
                 .get()
